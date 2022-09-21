@@ -1,4 +1,5 @@
 # `<name of application here>`
+![Air BNB](https://user-images.githubusercontent.com/103973779/191614217-56ad2b9a-467a-4260-a4ce-89d3037f5871.png)
 
 ## Database Schema Design
 
