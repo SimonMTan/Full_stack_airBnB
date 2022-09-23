@@ -15,5 +15,15 @@
   "license": "ISC",
   "dependencies": {
     "pg": "^8.8.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimonMTan/Full_stack_airBnB"
+  },
+
+  "bugs": {
+    "url": "https://github.com/SimonMTan/Full_stack_airBnB/issues"
+  },
+  "homepage": "https://github.com/SimonMTan/Full_stack_airBnB#readme"
+
 }
