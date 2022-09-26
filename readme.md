@@ -1,4 +1,4 @@
-# `<HFR(house for rent)>`
+# `I_BnB`
 
 ## Database Schema Design
 
