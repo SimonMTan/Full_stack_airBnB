@@ -9,9 +9,9 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ownerId: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull:false,
-        references: {model:'Users'},
+        reference: {model:'Users',key:'id'},
         onDelete:"CASCADE"
       },
       address: {
