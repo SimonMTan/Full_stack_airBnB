@@ -13,7 +13,7 @@ module.exports = {
     */
      await queryInterface.bulkInsert('Spots',[
       {
-        ownerId:2,
+        ownerId:1,
         address: '123 ABC st.',
         city:'Sanjose',
         state:'CA',
@@ -25,7 +25,7 @@ module.exports = {
         price: 120
       },
       {
-        ownerId:3,
+        ownerId:2,
         address: '234 BCD st.',
         city:'SanMateo',
         state:'CA',
@@ -37,7 +37,7 @@ module.exports = {
         price: 100
       },
       {
-        ownerId:4,
+        ownerId:3,
         address: '345 CDE st.',
         city:'Oakland',
         state:'CA',
@@ -49,7 +49,7 @@ module.exports = {
         price: 80
       },
       {
-        ownerId:5,
+        ownerId:4,
         address: '456 DEF st.',
         city:'NewYork',
         state:'NY',
@@ -61,7 +61,7 @@ module.exports = {
         price: 150
       },
       {
-        ownerId:6,
+        ownerId:4,
         address: '567 EFG st.',
         city:'Seattle',
         state:'WA',
@@ -73,7 +73,7 @@ module.exports = {
         price: 60
       },
       {
-        ownerId:7,
+        ownerId:6,
         address: '678 FGH st.',
         city:'Utah',
         state:'CA',
@@ -96,7 +96,7 @@ module.exports = {
      */
      const Op = Sequelize.Op;
      await queryInterface.bulkDelete('Spots', {
-       ownerId: { [Op.in]: [2,3,4,5,6,7] }
+       ownerId: { [Op.in]: [1,2,3,4,5,6] }
      }, {});
   }
 };
