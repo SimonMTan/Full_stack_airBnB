@@ -90,7 +90,16 @@ router.get('/', async (req, res, next) => {
 
       let spotJson = spot.toJSON()
       spotJson.avgRating = Number(review[0].avg).toFixed(1)
-      spotJson.previewImage = sptImg[0].url
+      if(sptImg.length === 1){
+        spotJson.previewImage = sptImg[0].url
+        }else if (sptImg.length > 1){
+          let img = []
+          for(let sptimg of sptimg)
+          img.push(sptimg.url)
+          spotJson.previewImage = img
+        }else{
+          spotJson.previewImage = null
+        }
 
       emptyArray.push(spotJson)
     }
@@ -105,7 +114,6 @@ router.get('/', async (req, res, next) => {
 //   Get all Spots owned by the Current User
 router.get('/current', requireAuth, async (req, res, next) => {
     const spots = await Spot.findAll({
-        raw:true,
         where:{
             ownerId:req.user.id
         }
@@ -132,10 +140,20 @@ router.get('/current', requireAuth, async (req, res, next) => {
         attributes: ['url']
       })
 
-      spot.avgRating = Number(review[0].avg).toFixed(1)
-      spot.previewImage = sptImg[0].url
+      let spotJson = spot.toJSON()
+      spotJson.avgRating = Number(review[0].avg).toFixed(1)
+      if(sptImg.length === 1){
+        spotJson.previewImage = sptImg[0].url
+        }else if (sptImg.length > 1){
+          let img = []
+          for(let sptimg of sptimg)
+          img.push(sptimg.url)
+          spotJson.previewImage = img
+        }else{
+          spotJson.previewImage = null
+        }
 
-      emptyArray.push(spot)
+      emptyArray.push(spotJson)
     }
     res.json({
         Spots: emptyArray })
