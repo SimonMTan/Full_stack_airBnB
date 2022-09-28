@@ -1,12 +1,23 @@
 const express = require('express')
 const router = express.Router();
-const { Spot,Review,SpotImage,sequelize,User } = require('../../db/models');
+const { Spot,Review,SpotImage,sequelize,User ,ReviewImage} = require('../../db/models');
 const user = require('../../db/models/user');
 const { setTokenCookie, restoreUser, requireAuth, } = require('../../utils/auth');
 
-// const { check } = require('express-validator');
-// const { handleValidationErrors } = require('../../utils/validation');
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
 
+const validatorReview =[
+check('review')
+.exists({ checkFalsy: true })
+.notEmpty()
+.withMessage('Review text is required'),
+check('stars')
+.exists({ checkFalsy: true })
+.notEmpty()
+.isInt()
+.withMessage("Stars must be an integer from 1 to 5"),
+handleValidationErrors]
 // const validatorSpot =[
 // check('address')
 // .exists({ checkFalsy: true })
@@ -295,4 +306,52 @@ router.delete('/:spotId',requireAuth, async(req,res,next) =>{
       })
 })
 
+//Get all Reviews by a Spot's id
+router.get('/:spotId/reviews',async(req,res,next) =>{
+  const {spotId} = req.params
+  const validatespot = await Spot.findByPk(spotId)
+  if(!validatespot){
+    res.status(404).json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
+  }
+
+  const review = await Review.findAll({
+    where:{
+      spotId:spotId
+    },
+include:[
+    {model:User, attributes:['id','firstName','lastName']},
+    {model: ReviewImage, attributes: ['id', 'url']}]
+  })
+
+  res.json({Reviews:review})
+})
+// Create a Review for a Spot based on the Spot's id
+router.post('/:spotId/reviews',validatorReview,async(req,res,next) =>{
+  const {review,stars} = req.body
+  const {spotId} = req.params
+  const userId = req.user.id
+  const validateSpot = await Spot.findByPk(spotId)
+  const validateReview = await Review.findOne({where:{
+    spotId,userId
+  }})
+  if(!validateSpot){
+    res.status(404).json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
+  }
+  if(validateReview){
+    res.status(404).json({
+      "message": "User already has a review for this spot",
+      "statusCode": 403
+    })
+  }
+const newReview = await Review.create({
+  spotId,userId,review,stars
+})
+res.status(201).json(newReview)
+})
 module.exports = router;
