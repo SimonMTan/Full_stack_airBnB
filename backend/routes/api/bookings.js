@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router();
 const { Spot,Review,SpotImage,sequelize,User,ReviewImage ,Booking} = require('../../db/models');
 const { setTokenCookie, restoreUser, requireAuth, } = require('../../utils/auth');
+const { Op } = require("sequelize");
 
 // Get all of the Current User's Bookings
 router.get('/current',requireAuth,async(req,res,next) =>{
@@ -45,14 +46,14 @@ router.get('/current',requireAuth,async(req,res,next) =>{
 //Edit a Booking
 router.put('/:bookingId',requireAuth,async(req,res,next) =>{
     const {bookingId} = req.params
-
     const validateBooking = await Booking.findByPk(bookingId)
     if(!validateBooking){
-        res.status(404).status({
+        res.status(404).json({
             "message": "Booking couldn't be found",
             "statusCode": 404
           })
     }
+
     const {startDate,endDate} = req.body
     if(startDate >= endDate ){
         res.status(400).json({
@@ -105,14 +106,14 @@ router.delete('/:bookingId',requireAuth,async(req,res) =>{
     const {bookingId} = req.params
     const validateBooking = await Booking.findByPk(bookingId)
     if(!validateBooking){
-        res.status(404).status({
+        res.status(404).json({
             "message": "Booking couldn't be found",
             "statusCode": 404
           })
     }
 
     if(validateBooking.startDate >= new Date()){
-        res.status(403).status({
+        res.status(403).json({
             "message": "Bookings that have been started can't be deleted",
             "statusCode": 403
           })

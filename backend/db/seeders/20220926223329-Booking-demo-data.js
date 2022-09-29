@@ -23,12 +23,12 @@ module.exports = {
         endDate:'2023-02-03'
        },
        {spotId:3,
-        userId:3,                 //startingdate that i input cant be on startdate, endDate, cant be between them ,
-        startDate:'2023-02-05',   //endingdate date that i input cant be on startdate, endDate, or between them
+        userId:3,
+        startDate:'2023-02-05',
         endDate:'2023-02-08'
        },
        {spotId:4,
-        // userId:4,             9 - 11
+        userId:4,            
         startDate:'2023-02-10',
         endDate:'2023-02-15'
        },
