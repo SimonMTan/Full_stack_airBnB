@@ -17,7 +17,7 @@ router.use('/users', usersRouter);
 router.use('/spots', spotsRouter);
 router.use('/reviews', reviewsRouter);
 router.use('/bookings',bookingsRouter)
-router.use('/bookings',bookingsRouter)
+// router.use('/bookings',bookingsRouter)
 router.use('/spot-images',spotimagesRouter)
 router.use('/review-images',reviewimagesRouter)
 // router.get('/set-token-cookie', async (_req, res) => {

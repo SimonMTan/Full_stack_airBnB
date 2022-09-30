@@ -19,12 +19,11 @@ const validateLogin = [
   ];
 
 //restore session user
-router.get('/', restoreUser, (req, res) => {
+router.get('/', restoreUser,async (req, res) => {
       const { user } = req;
+      const finduser = await User.findByPk(req.user.id)
       if (user) {
-        return res.json({
-          user: user.toSafeObject()
-        });
+        return res.json(finduser);
       } else return res.json({});
     }
   );
@@ -45,9 +44,7 @@ router.post('/',validateLogin, async (req, res, next) => {
       let token = await setTokenCookie(res, user);
       user = user.toJSON()
       user.token = token
-      return res.json({
-        user
-      });
+      return res.json(user);
     }
   );
 
