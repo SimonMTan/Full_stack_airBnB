@@ -65,9 +65,29 @@ router.get('/', async (req, res, next) => {
 
   if (!page) { page = 1 }
   if (!size) { size = 20 }
+
   page = parseInt(page);
   size = parseInt(size);
 
+  if( page <= 0 ){
+    res.status(400).json({
+        "message": "Validation Error",
+        "statusCode": 400,
+        "errors": {
+          "page": "Page must be greater than or equal to 1"
+        }
+     })
+  }
+
+  if( size <= 0 ){
+    res.status(400).json({
+        "message": "Validation Error",
+        "statusCode": 400,
+        "errors": {
+          "page": "size must be greater than or equal to 1"
+        }
+     })
+  }
   if (page >= 1 && size >= 1) {
     pagination.limit = size
     pagination.offset = size * (page - 1)
@@ -458,7 +478,7 @@ router.post('/:spotId/reviews', validatorReview, async (req, res, next) => {
     })
   }
   if (validateReview) {
-    res.status(404).json({
+    res.status(403).json({
       "message": "User already has a review for this spot",
       "statusCode": 403
     })
