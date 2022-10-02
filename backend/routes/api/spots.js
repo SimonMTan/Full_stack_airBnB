@@ -472,20 +472,21 @@ router.post('/:spotId/reviews', validatorReview, async (req, res, next) => {
     }
   })
   if (!validateSpot) {
-    res.status(404).json({
+    return res.status(404).json({
       "message": "Spot couldn't be found",
       "statusCode": 404
     })
   }
   if (validateReview) {
-    res.status(403).json({
+    return res.status(403).json({
       "message": "User already has a review for this spot",
       "statusCode": 403
     })
-  }
+  }else{
   const newReview = await Review.create({
     spotId, userId, review, stars
   })
   res.status(201).json(newReview)
+}
 })
 module.exports = router;
