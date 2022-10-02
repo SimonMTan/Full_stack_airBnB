@@ -27,6 +27,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Booking',
+    scopes: {
+      notOwner: {
+        attributes: { exclude: ['createdAt', 'updatedAt','id','userId'] }
+      }}
   });
   return Booking;
 };

@@ -84,7 +84,7 @@ router.get('/', async (req, res, next) => {
         "message": "Validation Error",
         "statusCode": 400,
         "errors": {
-          "page": "size must be greater than or equal to 1"
+          "size": "size must be greater than or equal to 1"
         }
      })
   }
@@ -347,7 +347,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
     res.json({ Bookings: bookings })
   }
   if (validatespot.ownerId !== req.user.id) {
-    const bookings = await Booking.findAll({
+    const bookings = await Booking.scope('notOwner').findAll({
       where: {
         spotId: spotId
       }
