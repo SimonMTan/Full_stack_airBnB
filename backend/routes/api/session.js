@@ -19,14 +19,16 @@ const validateLogin = [
   ];
 
 //restore session user
-router.get('/', restoreUser,async (req, res) => {
-      const { user } = req;
-      const finduser = await User.findByPk(req.user.id)
-      if (user) {
-        return res.json(finduser);
-      } else return res.json({});
-    }
-  );
+router.get(
+  '/',
+  restoreUser,
+  (req, res) => {
+    const { user } = req;
+    if (user) {
+      return res.json(user.toSafeObject());
+    } else return res.json(null);
+  }
+);
 
 //login
 router.post('/',validateLogin, async (req, res, next) => {
