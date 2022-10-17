@@ -1,0 +1,22 @@
+.container {
+    border-radius: 15px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width:100%;
+}
+
+.display {
+    border: 1px solid;
+    display:block;
+    padding: 8px 5px;
+    margin: 10px 10px;
+    width:90%;
+}
+
+.loginButton {
+    background-color: #FF385C;
+    margin: 15px 5px;
+    width:90%;
+}
