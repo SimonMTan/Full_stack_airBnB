@@ -12,6 +12,9 @@ const Getspot = () => {
     console.log('AAA',allspots)
     const spotimg = allspots.singleSpot.SpotImages
     const spotDetail = allspots.singleSpot
+    console.log('BBB',spotDetail)
+    const owner = spotDetail.Owner
+    console.log('CCC',owner)
     useEffect(() =>{
         dispatch(getspotdetail(spotId))
     },[dispatch,spotId])
@@ -41,7 +44,16 @@ const Getspot = () => {
                 </div>
                  ))} */}
             </div>
-            <div></div>
+            <div>
+                 Hosting By {owner.firstName} {owner.lastName}
+            </div>
+            <div>{spotDetail.description}</div>
+            <div>★{spotDetail.numReviews === 0 ? "New" : spotDetail.avgStarRating} {'  '}
+                {spotDetail.numReviews} {spotDetail.numReviews<2 ? 'review':'reviews'}
+            </div>
+            <div>
+                {'Review info - need review reducers to find the info.(need review that is for this spot as well as name of the reviewer and review'}
+            </div>
         </div>
         </>
     )
