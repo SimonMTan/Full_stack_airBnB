@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getspotdetail } from "../../store/spots";
 
 const Getspot = () => {
     const dispatch = useDispatch();
     const {spotId} = useParams()
+
     const allspots = useSelector((state) =>state.allSpots)
     // const user = useSelector((state) =>state.session)
+
     // console.log(user, '<<<<user')
     console.log('AAA',allspots)
     const spotimg = allspots.singleSpot.SpotImages
@@ -15,6 +17,7 @@ const Getspot = () => {
     console.log('BBB',spotDetail)
     const owner = spotDetail.Owner
     console.log('CCC',owner)
+    
     useEffect(() =>{
         dispatch(getspotdetail(spotId))
     },[dispatch,spotId])
@@ -25,7 +28,7 @@ const Getspot = () => {
             <div>{spotDetail.name}</div>
             <span>
                 ★{spotDetail.numReviews === 0 ? "New" : spotDetail.avgStarRating} {'  '}
-                <u>{spotDetail.numReviews} {spotDetail.numReviews<2 ? 'review':'reviews'}</u>
+                <u>{spotDetail.numReviews} {spotDetail.numReviews < 2 ? 'review':'reviews'}</u>
                 · <u>{spotDetail.city},{spotDetail.state},{spotDetail.country}</u>
             </span>
             <div>
@@ -45,14 +48,14 @@ const Getspot = () => {
                  ))} */}
             </div>
             <div>
-                 Hosting By {owner.firstName} {owner.lastName}
+                 Hosting By {owner?.firstName} {owner?.lastName}
             </div>
             <div>{spotDetail.description}</div>
             <div>★{spotDetail.numReviews === 0 ? "New" : spotDetail.avgStarRating} {'  '}
                 {spotDetail.numReviews} {spotDetail.numReviews<2 ? 'review':'reviews'}
             </div>
             <div>
-                {'Review info - need review reducers to find the info.(need review that is for this spot as well as name of the reviewer and review'}
+                'Review info - need review reducers to find the info.(need review that is for this spot as well as name of the reviewer and review'
             </div>
         </div>
         </>

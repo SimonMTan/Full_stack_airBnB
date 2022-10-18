@@ -17,8 +17,7 @@ const Getallspots = () => {
 
     return (
         <>
-        <button>{"Become a host"}</button>
-            <div>
+         <div>
                 {arrspots.map(spot => (
                     <NavLink to={`/spots/${spot.id}`}>
                         <div >
