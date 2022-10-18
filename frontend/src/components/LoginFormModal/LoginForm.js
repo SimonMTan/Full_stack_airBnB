@@ -58,6 +58,7 @@ function LoginForm() {
           />
         </label>
         <button type="submit" disabled={!!errors.length} className='loginButton'>Log In</button>
+        <button type="submit" className='loginButton' onClick={() => {setCredential('demo@user.io'); setPassword('password')}}>demoUser</button>
       </form>
     </div>
   );
