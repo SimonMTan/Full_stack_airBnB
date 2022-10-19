@@ -47,9 +47,9 @@ function App() {
           <Route path='/spots/:spotId'>
             <Getspot />
           </Route>
-          <Route>
+          {/* <Route>
             Sorry! Page not found
-          </Route>
+          </Route> */}
         </Switch>
       )}
     </>

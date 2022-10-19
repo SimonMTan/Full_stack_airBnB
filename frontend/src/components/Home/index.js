@@ -21,7 +21,7 @@ const Getallspots = () => {
                 {arrspots.map(spot => (
                     <NavLink to={`/spots/${spot.id}`}>
                         <div >
-                            <img src={spot.previewImage} alt ={spot.previewImage}/>
+                            <img src={spot?.previewImage[0]} alt ={spot.previewImage}/>
                             <div >
                                 <span><b>{spot.name}</b></span>
                                 <span><b>★ {spot.avgRating > 0 ? spot.avgRating : 'New'}</b></span>

@@ -29,13 +29,13 @@ const Newspot = () =>{
         if(!city)err.push('Please provide city')
         if(!state)err.push('Please provide state')
         if(!country)err.push('Please provide country')
-        if(!lat || !isNaN(lat))err.push('Please provide correct latitude')
-        if(!lng || !isNaN(lng))err.push('Please provide correct longitude')
+        if(!lat )err.push('Please provide correct latitude')
+        if(!lng )err.push('Please provide correct longitude')
         if(!name)err.push('Please provide name')
         if(!description)err.push('Please provide description')
-        if(!price || !isNaN(price) || price <= 0)err.push('Please provide valid price')
+        if(!price || price <= 0)err.push('Please provide valid price')
         setErrors(err)
-    },[city,state,country,lat,lng,name,description,price])
+    },[address,city,state,country,lat,lng,name,description,price])
 
     // useEffect(() =>{
     //     dispatch(createspot({city,state,country,lat,lng,name,description,price}))
@@ -46,7 +46,7 @@ const Newspot = () =>{
         e.preventDefault()
         setErrors([]);
         history.push('/account')
-        return dispatch(createspot({city,state,country,lat,lng,name,description,price })).catch(
+        return dispatch(createspot({address,city,state,country,lat,lng,name,description,price })).catch(
           async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors);

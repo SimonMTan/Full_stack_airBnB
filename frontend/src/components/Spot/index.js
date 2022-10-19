@@ -40,10 +40,10 @@ const Getspot = () => {
                 ))}
                 {/* {spotimg.map(spot => (
                 <div>
-                    <img src={spot[1]?.url}></img>
-                    <img src={spot[2]?.url}></img>
-                    <img src={spot[3]?.url}></img>
-                    <img src={spot[4]?.url}></img>
+                    <img src={spot?.url[2]}></img>
+                    <img src={spot?.url[3]}></img>
+                    <img src={spot?.url[4]}></img>
+                    <img src={spot?.url[5]}></img>
                 </div>
                  ))} */}
             </div>
