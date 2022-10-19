@@ -8,6 +8,8 @@ import Getspot from './components/Spot'
 import Navigation from "./components/Navigation";
 import Newspot from "./components/Newspot";
 import Account from "./components/Account";
+import Editspot from "./components/Editspot";
+import Deletespot from './components/Deletespot'
 
 import * as sessionActions from "./store/session";
 
@@ -33,11 +35,20 @@ function App() {
           <Route path='/spots/createspot'>
             <Newspot />
           </Route>
+          <Route path='/account'>
+            <Account />
+          </Route>
+          <Route path='`/edit/spots/:spotId`'>
+            <Editspot />
+          </Route>
+          <Route path='/delete/spots/:spotId'>
+            <Deletespot />
+          </Route>
           <Route path='/spots/:spotId'>
             <Getspot />
           </Route>
-          <Route path='/account'>
-            <Account />
+          <Route>
+            Sorry! Page not found
           </Route>
         </Switch>
       )}

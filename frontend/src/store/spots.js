@@ -151,11 +151,11 @@ const spotReducer = (state = initState,action) =>{
         return newState
 
         case DELETE_SPOT:
-        delete newState.singleSpot[action.payload]
+        delete newState.allSpots[action.payload]
         return newState
 
         case CURRENTUSER_SPOT:
-        newState.ownerSpots = {...action.payload}
+        // newState.ownerSpots = {...action.payload}
         return newState
 
         default:
