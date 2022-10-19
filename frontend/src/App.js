@@ -7,6 +7,7 @@ import Home from './components/Home'
 import Getspot from './components/Spot'
 import Navigation from "./components/Navigation";
 import Newspot from "./components/Newspot";
+import Account from "./components/Account";
 
 import * as sessionActions from "./store/session";
 
@@ -34,6 +35,9 @@ function App() {
           </Route>
           <Route path='/spots/:spotId'>
             <Getspot />
+          </Route>
+          <Route path='/account'>
+            <Account />
           </Route>
         </Switch>
       )}

@@ -5,6 +5,7 @@ const GET_SPOTDETAIL = 'spots/detail'
 const CREATE_SPOT = 'spots/create'
 const EDIT_SPOT = 'spots/edit'
 const DELETE_SPOT = 'spots/delete'
+const CURRENTUSER_SPOT = 'spots/userspots'
 
 //...ACTIONS...
 
@@ -44,6 +45,12 @@ const delete_spot = (id) =>{
     }
 }
 
+const get_allspots_currentuser = (data) =>{
+    return {
+        type:CURRENTUSER_SPOT,
+        payload:data
+    }
+}
 
 //...Thunk action...
 export const getallspots = () => async dispatch => {
@@ -103,9 +110,18 @@ export const deletespot = (spotId) => async dispatch =>{
       return
     }};
 
+export const getallspotscurrentuser = () => async dispatch => {
+    const response = await csrfFetch('/api/spots/current')
+    if(response.ok){
+        const data = await response.json()
+        dispatch(get_allspots_currentuser(data))
+        return data
+    }
+}
+
 
 //...reducer...
-const initState = {allSpots:{},singleSpot:{SpotImages:[]}}
+const initState = {allSpots:{},singleSpot:{SpotImages:[]},ownerSpots:{}}
 const spotReducer = (state = initState,action) =>{
     let newState = {...state}
     switch(action.type){
@@ -136,6 +152,10 @@ const spotReducer = (state = initState,action) =>{
 
         case DELETE_SPOT:
         delete newState.singleSpot[action.payload]
+        return newState
+
+        case CURRENTUSER_SPOT:
+        newState.ownerSpots = {...action.payload}
         return newState
 
         default:
