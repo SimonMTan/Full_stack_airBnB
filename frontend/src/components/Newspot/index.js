@@ -2,10 +2,11 @@ import { useDispatch } from "react-redux"
 import { createspot } from "../../store/spots";
 import React,{ useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
 // import
 
 const Newspot = () =>{
-
+    const history = useHistory()
     const dispatch = useDispatch()
     const allspots = useSelector((state) =>state.allSpots)
     const sessionUser = useSelector((state) => state.session.user);
@@ -36,14 +37,15 @@ const Newspot = () =>{
         setErrors(err)
     },[city,state,country,lat,lng,name,description,price])
 
-    useEffect(() =>{
-        dispatch(createspot({city,state,country,lat,lng,name,description,price}))
-    },[dispatch])
+    // useEffect(() =>{
+    //     dispatch(createspot({city,state,country,lat,lng,name,description,price}))
+    // },[dispatch])
 
     if(!sessionUser) return Error('need to signup or login')
     const handleSubmit = (e) =>{
         e.preventDefault()
         setErrors([]);
+        history.push('/account')
         return dispatch(createspot({city,state,country,lat,lng,name,description,price })).catch(
           async (res) => {
             const data = await res.json();
@@ -62,7 +64,7 @@ const Newspot = () =>{
             ))}
         </ul>
         <label>
-            name
+            Name
             <input
             type="text"
             value={name}
@@ -72,7 +74,7 @@ const Newspot = () =>{
             </input>
         </label>
         <label>
-            address
+            Address
             <input
             type="text"
             value={address}
@@ -82,7 +84,7 @@ const Newspot = () =>{
             </input>
         </label>
         <label>
-            city
+            City
             <input
             type="text"
             value={city}
@@ -92,7 +94,7 @@ const Newspot = () =>{
             </input>
         </label>
         <label>
-            state
+            State
             <input
             type="text"
             value={state}
@@ -102,7 +104,7 @@ const Newspot = () =>{
             </input>
         </label>
         <label>
-            country
+            Country
             <input
             type="text"
             value={country}
@@ -132,7 +134,7 @@ const Newspot = () =>{
             </input>
         </label>
         <label>
-            description
+            Description
             <input
             type="text"
             value={description}
@@ -142,7 +144,7 @@ const Newspot = () =>{
             </input>
         </label>
         <label>
-            price
+            Price
             <input
             type="text"
             value={price}
@@ -151,7 +153,7 @@ const Newspot = () =>{
             placeholder="$...">
             </input>
         </label>
-        <button type="submit"></button>
+        <button type="submit">Submit</button>
         </form>
     </>
     )

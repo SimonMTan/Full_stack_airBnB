@@ -17,7 +17,7 @@ const Getspot = () => {
     console.log('BBB',spotDetail)
     const owner = spotDetail.Owner
     console.log('CCC',owner)
-    
+
     useEffect(() =>{
         dispatch(getspotdetail(spotId))
     },[dispatch,spotId])
@@ -32,7 +32,7 @@ const Getspot = () => {
                 · <u>{spotDetail.city},{spotDetail.state},{spotDetail.country}</u>
             </span>
             <div>
-                {/* may be i can use foreach when i have more than 1 */}
+                {/* may be i can use foreach when i have more than 1, preview and use filter */}
                 {spotimg.map(spot => (
                 <div>
                     <img src={spot?.url} alt={spot.id} key={spot.id}/>
