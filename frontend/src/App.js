@@ -38,7 +38,7 @@ function App() {
           <Route path='/account'>
             <Account />
           </Route>
-          <Route path='`/edit/spots/:spotId`'>
+          <Route path='/edit/spots/:spotId'>
             <Editspot />
           </Route>
           <Route path='/delete/spots/:spotId'>

@@ -33,7 +33,7 @@ const Account  = () => {
 
                 {imgs?.map((spot) => (
                     <span key={spot?.id}>
-                        <img src={spot?.previewImage}></img>
+                        <img src={spot?.previewImage[0]}></img>
                     </span>
                 ))}
 
