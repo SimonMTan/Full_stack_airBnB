@@ -18,8 +18,7 @@ const Getspot = () => {
 
     useEffect(() =>{
         dispatch(getspotdetail(spotId))
-    },[dispatch,spotId])
-
+    },[dispatch])
     if(!allspots)return null
 
     return (
@@ -57,7 +56,7 @@ const Getspot = () => {
             <div>
                 'Review info - need review reducers to find the info.(need review that is for this spot as well as name of the reviewer and review'
             </div>
-            <Getreview spotId={spotId}/>
+            <Getreview />
         </div>
         </>
     )

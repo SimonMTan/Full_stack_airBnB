@@ -28,10 +28,12 @@ const delete_review_spot = (info) =>{
 }
 //...Thunk action...
 export const getreview = (spotId) => async dispatch => {
-    const response = await csrfFetch(`/api/spots/${spotId}/reviews`)
+    const response = await fetch(`/api/spots/${spotId}/reviews`)
+    console.log(response,'fetch return')
     if(response.ok){
         let data = await response.json()
         const newdata = data.Reviews
+        console.log(newdata)
         dispatch(get_review_spot(newdata))
         return newdata
     }
@@ -39,7 +41,7 @@ export const getreview = (spotId) => async dispatch => {
 
 export const createreview = (info,spotId) => async dispatch =>{
     const {review , stars} = info
-    const response = await csrfFetch(`/api/spots${spotId}/reviews`,{
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`,{
         method:'POST',
         body:JSON.stringify({
             review,stars
@@ -47,7 +49,7 @@ export const createreview = (info,spotId) => async dispatch =>{
     })
     if(response.ok){
         const data = await response.json()
-        dispatch(create_review_spot(data))
+        // dispatch(create_review_spot(data))
         return data
     }
 }
@@ -62,23 +64,25 @@ export const deletereview = (reviewId) => async dispatch =>{
     }
 }
 
-const initState = {spotReviews:{User:{},ReviewImages:{}}}
+const initState = {spotReviews:{}}
 const reviewReducer = (state = initState,action) =>{
     let newState = {...state}
     switch(action.type){
         case GET_REVIEW_SPOT:
+            const allreview = {}
             console.log('payload',action.payload)
             action.payload.forEach((review) => {
-                newState.spotReviews[review.id] = review
+                allreview[review.id] = review
             })
+            newState.spotReviews = allreview
             return newState
 
-        case CREATE_REVIEW:
-            newState[action.payload.id]=action.payload
-            return newState
+        // case CREATE_REVIEW:
+        //     newState[action.payload.id]=action.payload
+        //     return newState
 
         case DELETE_REVIEW:
-            delete newState[action.payload]
+            delete newState.spotReviews[action.payload]
             return newState
 
         default:
