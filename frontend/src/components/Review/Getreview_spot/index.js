@@ -2,21 +2,27 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect, useHistory } from "react-router-dom";
 import { getreview , deletereview } from "../../../store/reviews";
-
-const Getreview = ({spotId}) =>{
+import {useParams} from 'react-router-dom'
+const Getreview = ({}) =>{
+    const {spotId} = useParams()
+    console.log(spotId)
     const dispatch = useDispatch()
     const history = useHistory()
     const allreviews = useSelector((state) => state.spotReviews)
-    const currentUser = useSelector((state) => state.session)
-    const arrayreviews = Object.values(allreviews)
-
+    console.log('allreviews from createreviewspot',allreviews)
+    const currentUser = useSelector((state) => state.session.user)
+    console.log(currentUser, 'currentUser')
+    console.log(currentUser.id , " is user id")
+    const arrayreviews = Object.values(allreviews.spotReviews)
+    console.log('arrayreviews',arrayreviews)
+    console.log(arrayreviews['0'] , 'review')
     useEffect(() =>{
         dispatch(getreview(spotId))
-    },[dispatch,spotId])
+    },[dispatch])
 
     const deletereviewhandle = (spotId) => async(e) => {
         e.preventDefault()
-        const response = await deletereview(id)
+        const response = await deletereview(spotId)
         if(response.ok)alert('Your review has been deleted')
         history.push(`/spots/${spotId}`)
     }
@@ -27,11 +33,11 @@ const Getreview = ({spotId}) =>{
                 {arrayreviews?.map(review => (
                     <div>
                         <div>
-                            {review?.User?.id !== review?.User?.id (
+                            (!(review?.User?.id == currentUser?.id) ?
                                 <NavLink to={`/spots/${spotId}/newreview`}>
                                     <div > Leave A Review? </div>
-                                </NavLink>
-                            )}
+                                </NavLink> : null
+                            )
                         </div>
                         <div>
                             <span>{review?.User?.firstName} {review?.User?.lastName}</span>
