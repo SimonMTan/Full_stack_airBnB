@@ -1,8 +1,8 @@
 import { csrfFetch } from "./csrf";
 
 const GET_REVIEW_SPOT = 'reviews/allreview'
-const CREATE_SPOT = 'reviews/newreview'
-const DELETE_SPOT = 'reviews/deletereview'
+const CREATE_REVIEW = 'reviews/newreview'
+const DELETE_REVIEW = 'reviews/deletereview'
 
 //--ACTION--
 
@@ -15,14 +15,14 @@ const get_review_spot = (info) => {
 
 const create_review_spot = (info) =>{
     return {
-        type:CREATE_SPOT,
+        type:CREATE_REVIEW,
         payload:info
     }
 }
 
 const delete_review_spot = (info) =>{
     return {
-        type:DELETE_SPOT,
+        type:DELETE_REVIEW,
         payload:info
     }
 }
@@ -37,6 +37,52 @@ export const getreview = (spotId) => async dispatch => {
     }
 }
 
-export const createreview = () => async dispatch =>{
-    const response = await csrfFetch(``)
+export const createreview = (info,spotId) => async dispatch =>{
+    const {review , stars} = info
+    const response = await csrfFetch(`/api/spots${spotId}/reviews`,{
+        method:'POST',
+        body:JSON.stringify({
+            review,stars
+        })
+    })
+    if(response.ok){
+        const data = await response.json()
+        dispatch(create_review_spot(data))
+        return data
+    }
 }
+
+export const deletereview = (reviewId) => async dispatch =>{
+    const response = await csrfFetch(`/api/reviews/${reviewId}`,{
+        method:'DELETE'
+    })
+    if(response.ok){
+        dispatch(delete_review_spot(reviewId))
+        return;
+    }
+}
+
+const initState = {spotReviews:{User:{},ReviewImages:{}}}
+const reviewReducer = (state = initState,action) =>{
+    let newState = {...state}
+    switch(action.type){
+        case GET_REVIEW_SPOT:
+            action.payload.Reviews.forEach((review) => {
+                newState[review.id] = review
+            })
+            return newState
+
+        case CREATE_REVIEW:
+            newState[action.payload.id]=action.payload
+            return newState
+
+        case DELETE_REVIEW:
+            delete newState[action.payload]
+            return newState
+
+        default:
+            return state
+    }
+}
+
+export default reviewReducer
