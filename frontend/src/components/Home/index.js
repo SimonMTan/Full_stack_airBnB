@@ -7,9 +7,9 @@ const Getallspots = () => {
     const dispatch = useDispatch();
 
     const allspots = useSelector((state) =>state.allSpots)
-    console.log('allspot ---->',allspots)
+    // console.log('allspot ---->',allspots)
     const arrspots = Object.values(allspots.allSpots)
-    console.log(' should be array allSpots',arrspots )
+    // console.log(' should be array allSpots',arrspots )
 
     useEffect(() =>{
         dispatch(getallspots())

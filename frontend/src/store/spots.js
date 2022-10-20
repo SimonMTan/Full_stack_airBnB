@@ -10,7 +10,6 @@ const DELETE_SPOT = 'spots/delete'
 //...ACTIONS...
 
 const get_allspots = (info) =>{
-    // console.log('this is info from get_allspots',info)
     return {
         type:GET_AllSPOTS,
         payload:info
@@ -59,32 +58,52 @@ export const getallspots = () => async dispatch => {
     let data = await response.json()
     // console.log("getallspotdata",data)
     const newdata = data.Spots
-    // console.log("getallspotdata2",newdata)
     dispatch(get_allspots(newdata))
     return newdata
 }}
 
+export const spotimg = (spotId,img) => async dispatch =>{
+    const response = await csrfFetch(`/api/spots/${spotId}/images`,{
+    method:'POST',
+    body:JSON.stringify({
+        url:img,
+        })
+    })
+    if(response.ok){
+        const data = await response.json()
+        return data
+    }
+}
 export const getspotdetail = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}`)
     if(response.ok){
     const data = await response.json()
-    console.log("getallspotdata",data)
+    // console.log("getallspotdata",data)
     dispatch(get_spotdetail(data))
     return data
 }}
 
 export const createspot = (info) => async dispatch =>{
-    const {address,city,state,country,lat,lng,name,description,price} = info
+    const {address,city,state,country,lat,lng,name,description,price,img} = info
     const response = await csrfFetch('/api/spots', {
         method:'POST',
         body:JSON.stringify({
             address,city,state,country,lat,lng,name,description,price
         })
     })
-    if(response.ok){
-    const data = await response.json()
-    dispatch(create_spot(data))
-    return data
+    let spot
+    if(response.ok)spot = await response.json()
+    const imgresponse = await csrfFetch(`/api/spots/${spot.id}/images`,{
+        method:'POST',
+        body:JSON.stringify({
+            url:img,
+            })
+        })
+    if(spot && imgresponse.ok){
+        const img = await imgresponse.json()
+        // console.log('this is data inside thunk',{previewImg:img.url,...spot})
+        dispatch(create_spot({previewImage:[img.url],...spot}))
+        return spot
 }}
 
 export const editspot = (info,spotId) => async dispatch =>{
@@ -110,16 +129,6 @@ export const deletespot = (spotId) => async dispatch =>{
       return
     }};
 
-// export const getallspotscurrentuser = () => async dispatch => {
-//     const response = await csrfFetch('/api/spots/current')
-//     if(response.ok){
-//         const data = await response.json()
-//         dispatch(get_allspots_currentuser(data))
-//         return data
-//     }
-// }
-
-
 //...reducer...
 const initState = {allSpots:{},singleSpot:{SpotImages:[]}}
 const spotReducer = (state = initState,action) =>{
@@ -142,7 +151,9 @@ const spotReducer = (state = initState,action) =>{
 
         case CREATE_SPOT:
         const newspot = {...action.payload}
-        newState.allSpots = {...state.allSpots,newspot}
+        // console.log('new spot inside reducer',newspot)
+        newState.allSpots = {...state.allSpots,[newspot.id]:newspot}
+        // console.log('newstate inside reducer', newState)
         return newState
 
         case EDIT_SPOT:

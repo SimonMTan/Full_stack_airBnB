@@ -6,7 +6,7 @@ import { deletespot } from "../../store/spots";
 const Deletespot = () =>{
     const dispatch = useDispatch()
     const {spotId} = useParams()
-    console.log('this is delete id',spotId)
+    // console.log('this is delete id',spotId)
 
     useEffect(() =>{
         dispatch(deletespot(spotId))

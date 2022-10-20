@@ -11,16 +11,18 @@ const Getspot = () => {
     // const user = useSelector((state) =>state.session)
 
     // console.log(user, '<<<<user')
-    console.log('AAA',allspots)
+    // console.log('AAA',allspots)
     const spotimg = allspots.singleSpot.SpotImages
     const spotDetail = allspots.singleSpot
-    console.log('BBB',spotDetail)
+    // console.log('BBB',spotDetail)
     const owner = spotDetail.Owner
-    console.log('CCC',owner)
+    // console.log('CCC',owner)
 
     useEffect(() =>{
         dispatch(getspotdetail(spotId))
     },[dispatch,spotId])
+
+    if(!allspots)return null
 
     return (
         <>
@@ -33,7 +35,7 @@ const Getspot = () => {
             </span>
             <div>
                 {/* may be i can use foreach when i have more than 1, preview and use filter */}
-                {spotimg.map(spot => (
+                {spotimg?.map(spot => (
                 <div>
                     <img src={spot?.url} alt={spot.id} key={spot.id}/>
                 </div>
