@@ -2,15 +2,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getspotdetail } from "../../store/spots";
+import Getreview from "../Review/Getreview_spot";
 
 const Getspot = () => {
     const dispatch = useDispatch();
     const {spotId} = useParams()
 
     const allspots = useSelector((state) =>state.allSpots)
-    // const user = useSelector((state) =>state.session)
-
-    // console.log(user, '<<<<user')
     // console.log('AAA',allspots)
     const spotimg = allspots.singleSpot.SpotImages
     const spotDetail = allspots.singleSpot
@@ -59,6 +57,7 @@ const Getspot = () => {
             <div>
                 'Review info - need review reducers to find the info.(need review that is for this spot as well as name of the reviewer and review'
             </div>
+            <Getreview spotId={spotId}/>
         </div>
         </>
     )

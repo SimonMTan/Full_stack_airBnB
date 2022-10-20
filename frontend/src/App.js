@@ -10,6 +10,7 @@ import Newspot from "./components/Newspot";
 import Account from "./components/Account";
 import Editspot from "./components/Editspot";
 import Deletespot from './components/Deletespot'
+import Createreview from "./components/Review/Createreview_spot";
 
 import * as sessionActions from "./store/session";
 
@@ -44,8 +45,11 @@ function App() {
           <Route path='/delete/spots/:spotId'>
             <Deletespot />
           </Route>
-          <Route path='/spots/:spotId'>
+          <Route path='/spots/:spotId' exact>
             <Getspot />
+          </Route>
+          <Route path='/spots/:spotId/newreview' exact>
+            <Createreview />
           </Route>
           {/* <Route>
             Sorry! Page not found
