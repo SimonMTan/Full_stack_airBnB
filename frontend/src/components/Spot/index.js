@@ -2,61 +2,76 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getspotdetail } from "../../store/spots";
-
+import Getreview from "../Review/Getreview_spot";
+import './spotdetail.css'
 const Getspot = () => {
     const dispatch = useDispatch();
     const {spotId} = useParams()
-
     const allspots = useSelector((state) =>state.allSpots)
-    // const user = useSelector((state) =>state.session)
 
-    // console.log(user, '<<<<user')
-    console.log('AAA',allspots)
-    const spotimg = allspots.singleSpot.SpotImages
     const spotDetail = allspots.singleSpot
-    console.log('BBB',spotDetail)
-    const owner = spotDetail.Owner
-    console.log('CCC',owner)
+    const owner = allspots.singleSpot.Owner
+    const bigPic = allspots.singleSpot.SpotImages.filter(pic => pic.preview == true)
+    const smallPic = allspots.singleSpot.SpotImages.filter(pic => pic.preview == false )
+
+    // console.log('AAA',allspots)
+    // console.log(spotimg,' <<<<<<img')
+    // console.log('BBB',spotDetail)
+    // console.log('CCC',owner)
+    // console.log('bigpic', bigPic[0].url)
 
     useEffect(() =>{
         dispatch(getspotdetail(spotId))
-    },[dispatch,spotId])
+    },[dispatch])
+    if(!allspots)return null
 
     return (
         <>
-        <div>
-            <div>{spotDetail.name}</div>
-            <span>
+        <div className="spotdetail-container">
+            <h1 className="spotname">{spotDetail.name}</h1>
+            <span className="spotinfo">
                 ★{spotDetail.numReviews === 0 ? "New" : spotDetail.avgStarRating} {'  '}
                 <u>{spotDetail.numReviews} {spotDetail.numReviews < 2 ? 'review':'reviews'}</u>
                 · <u>{spotDetail.city},{spotDetail.state},{spotDetail.country}</u>
             </span>
-            <div>
-                {/* may be i can use foreach when i have more than 1, preview and use filter */}
-                {spotimg.map(spot => (
-                <div>
-                    <img src={spot?.url} alt={spot.id} key={spot.id}/>
+            <div className="pic-wrapper">
+                <div >
+                    <img className="bigPic" src={bigPic[0]?.url} alt={bigPic[0]?.id} key={bigPic[0]?.id}/>
                 </div>
-                ))}
-                {/* {spotimg.map(spot => (
-                <div>
-                    <img src={spot[1]?.url}></img>
-                    <img src={spot[2]?.url}></img>
-                    <img src={spot[3]?.url}></img>
-                    <img src={spot[4]?.url}></img>
+
+                 <div className="smallPics">
+                    <img className='smallpic left-top' src={smallPic[0]?.url}/>
+                    <img className='smallpic right-top' src={smallPic[1]?.url}/>
+                    <img className='smallpic left-bot' src={smallPic[2]?.url}/>
+                    <img className='smallpic right-bot' src={smallPic[3]?.url}/>
                 </div>
-                 ))} */}
             </div>
-            <div>
-                 Hosting By {owner?.firstName} {owner?.lastName}
+            <div className="middle">
+                <div className="middle-left">
+                    <div className="hostby">
+                        Hosting By {owner?.firstName} {owner?.lastName}
+                    </div>
+                    <div className="guests">4 guests · 2 beds · 1bath</div>
+                    <div className='static-info'>Great location</div>
+                    <div>95% of recent guests gave the location a 5-star rating.</div>
+                    <div className='static-info'>Great check-in experience</div>
+                    <div className='static-info lastone'>Free cancellation before 48 hours</div>
+
+                    <div className="spot-desc">{spotDetail?.description}</div>
+                </div>
+                <div className="middle-right">
+                    <div className='middle-rightinfo-big'>${spotDetail.price} night</div>
+                    <div className='middle-rightinfo'>${`${spotDetail.price} `} x 5 nights = ${spotDetail.price*5}</div>
+                    <div className='middle-rightinfo'>Cleaning fee ={` `}$20</div>
+                    <div className='middle-rightinfo-last'>Service fee ={` `}$200</div>
+                    <div className="total">Total before taxes = ${(spotDetail.price*5)+20+200}</div>
+                </div>
             </div>
-            <div>{spotDetail.description}</div>
-            <div>★{spotDetail.numReviews === 0 ? "New" : spotDetail.avgStarRating} {'  '}
-                {spotDetail.numReviews} {spotDetail.numReviews<2 ? 'review':'reviews'}
+            <div className="reviewtitle">★{spotDetail?.numReviews === 0 ? "New" : spotDetail.avgStarRating} &emsp; {' '} &emsp; {' '}
+                {spotDetail?.numReviews} {spotDetail?.numReviews<2 ? 'review':'reviews'}
             </div>
-            <div>
-                'Review info - need review reducers to find the info.(need review that is for this spot as well as name of the reviewer and review'
-            </div>
+
+            <Getreview />
         </div>
         </>
     )

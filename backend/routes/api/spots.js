@@ -114,26 +114,33 @@ router.get('/', async (req, res, next) => {
       raw: true,
       where: {
         spotId: spot.id,
-        preview: true
+        // preview: true
       },
       attributes: ['url']
     })
-
+    // console.log('sptimg in backend',sptImg)
     let spotJson = spot.toJSON()
     spotJson.avgRating = Number(review[0].avg).toFixed(1)
-    if (sptImg.length === 1) {
-      spotJson.previewImage = sptImg[0].url
-    } else if (sptImg.length > 1) {
-      let img = []
-      for (let sptimg of sptimg)
-        img.push(sptimg.url)
-      spotJson.previewImage = img
-    } else {
-      spotJson.previewImage = null
+    // if (sptImg.length === 1) {
+    //   spotJson.previewImage = sptImg[0].url
+    // } else if (sptImg.length > 1) {
+    //   let img = []
+    //   for (let sptimg of sptimg)
+    //     img.push(sptimg.url)
+    //   spotJson.previewImage = img
+    // } else {
+    // spotJson.previewImage = null
+    // }
+    let arr= []
+    for(let img of sptImg){
+      arr.push(img.url)
     }
-
+    // console.log('arr of img backend',arr)
+    spotJson.previewImage = arr
+    // console.log('spotJson',spotJson)
     emptyArray.push(spotJson)
   }
+  // console.log('emptyArr',emptyArray)
 
   res.json({
     Spots: emptyArray,
@@ -217,7 +224,7 @@ router.get('/:spotId', async (req, res, next) => {
     raw: true,
     where: {
       spotId: spot.id,
-      preview: true
+      // preview: true
     },
     attributes: ['id', 'url', 'preview']
   })

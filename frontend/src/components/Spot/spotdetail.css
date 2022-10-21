@@ -1,0 +1,137 @@
+.spotdetail-container{
+    display:flex;
+    flex-direction:column;
+    padding-left:25%;
+    padding-right:25%
+
+}
+
+.spotname {
+    font-size: 2em;
+    /* padding-left:80px; */
+}
+
+.spotinfo {
+    font-size: 25px;
+
+}
+
+ .pic-wrapper {
+    display:flex;
+    height:500px;
+    width:100%;
+    flex-wrap:nowrap;
+    }
+
+
+.bigPic {
+    width:98%;
+    height:98%;
+    padding:2% 2%;
+    /* border-left: 20px; */
+    border-radius: 15px 0 0 15px;
+}
+
+.smallPics {
+    display:flex;
+    flex-wrap:wrap;
+    width:96%;
+    height:96%;
+}
+
+.smallpic {
+    width:46%;
+    height:47%;
+    padding:2% 1%;
+}
+
+.right-top{
+    border-radius: 0 15px 0 0;
+}
+
+.right-bot{
+    border-radius: 0 0 15px 0;
+}
+
+.hostby{
+    font-size: 26px;
+    height: 50px;
+    padding-top: 20px;
+}
+
+.spot-desc{
+    font-size: 18px;
+    padding:30px 0px;
+    border-style: none none solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, .20);
+    height:54px;
+}
+
+.guests{
+    font-size:18px;
+    border-style: none none solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, .20);
+    padding:20px 0px;
+}
+
+.static-info{
+    font-size:18px;
+    padding:20px 0px;
+}
+
+.lastone{
+    font-size:18px;
+    padding:10px 0px;
+    border-style: none none solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, .20);
+}
+
+.middle{
+    display:flex
+}
+
+.middle-left{
+    width:60%;
+    padding-right:10px;
+}
+
+.middle-right{
+    width:25%;
+    height:250px;
+    border-style:solid;
+    border-width: 3px;
+    border-color: rgba(0, 0, 0, .20);
+    margin-left: 9%;
+    /* margin-right: 5%; */
+    margin-top: 20px;
+}
+
+.middle-rightinfo-big{
+    font-size:30px;
+    padding:10px;
+}
+
+.middle-rightinfo {
+    font-size:20px;
+    padding:10px;
+
+}
+.total{
+    font-size:22px;
+    padding:10px;
+}
+.middle-rightinfo-last{
+    font-size:20px;
+    padding:10px;
+    border-style: none none solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, .20);
+}
+
+.reviewtitle{
+    font-size: 25px;
+    margin-bottom: 30px;
+}
