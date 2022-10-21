@@ -28,7 +28,7 @@ const Getreview = ({}) =>{
         return (
         <>
             <div>
-                {currentUser.id !== filteruserid.id && (
+                {!filteruserid.length && (
                     <div>
                     <NavLink to={`/spots/${spotId}/newreview`}>
                         <div > Leave A Review? </div>

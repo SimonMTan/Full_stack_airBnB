@@ -97,6 +97,7 @@ export const createspot = (info) => async dispatch =>{
         method:'POST',
         body:JSON.stringify({
             url:img,
+            preview: true
             })
         })
     if(spot && imgresponse.ok){
