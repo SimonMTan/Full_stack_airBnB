@@ -1,0 +1,32 @@
+.account-title{
+    font-size:50px;
+
+}
+
+.spot-detail{
+    display:flex;
+    flex-direction: row;
+}
+
+.account-pic{
+    width:500px;
+    height:500px;
+    margin: 50px;
+}
+
+.account-button-container{
+    display:flex;
+    flex-direction: column;
+    /* background-color: #FF385C; */
+    text-decoration: none;
+}
+
+.account-button {
+    background-color:#FF385C;
+    color: white;
+    text-decoration: none;
+}
+
+a:visited , a:link{
+    text-decoration: none;
+}

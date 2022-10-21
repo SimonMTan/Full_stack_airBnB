@@ -97,18 +97,18 @@
 }
 
 .middle-left{
-    width:60%;
+    width:650px;
     padding-right:10px;
 }
 
 .middle-right{
     width:25%;
     height:250px;
+    border-radius: 8px;
     border-style:solid;
-    border-width: 3px;
+    border-width: 1px;
     border-color: rgba(0, 0, 0, .20);
-    margin-left: 55px;
-    /* margin-right: 5%; */
+    margin-left: 35px;
     margin-top: 20px;
     position: sticky;
     top: 0;

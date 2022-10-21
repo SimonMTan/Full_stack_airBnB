@@ -3,7 +3,7 @@ import { createspot, spotimg } from "../../store/spots";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
-// import
+import './Newspot.css'
 
 const Newspot = () => {
     const history = useHistory()
@@ -26,13 +26,13 @@ const Newspot = () => {
 
     useEffect(() => {
         const err = []
+        if (!name) err.push('Please provide name')
         if (!address) err.push('Please provide address')
         if (!city) err.push('Please provide city')
         if (!state) err.push('Please provide state')
         if (!country) err.push('Please provide country')
         if (!lat) err.push('Please provide correct latitude')
         if (!lng) err.push('Please provide correct longitude')
-        if (!name) err.push('Please provide name')
         if (!description) err.push('Please provide description')
         if (!price || price <= 0) err.push('Please provide valid price')
         setErrors(err)
@@ -54,27 +54,30 @@ const Newspot = () => {
             history.push('/account')
           }
         return (
-            <>
-                <h1>Let create a wonderful home for visitor</h1>
+            <div className="createspotform">
+            <h1 className="title">Let create a wonderful home for visitor</h1>
+            <div className='spotform'>
                 <form onSubmit={handleSubmit}>
-                    <div>
+                    <div className="error-createspot">
                         {errors.map((error, idx) => (
-                            <div key={idx}>{error}</div>
+                            <div key={idx}>·{error}</div>
                         ))}
                     </div>
-                    <label>
-                        Name
+                    <label >
+                        <div className="info">Name</div>
                         <input
+                            className="input"
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
-                            placeholder="Name for spot...">
+                            placeholder="Name...">
                         </input>
                     </label>
-                    <label>
-                        Address
+                    <label >
+                        <div className="info">Address</div>
                         <input
+                            className="input"
                             type="text"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
@@ -82,9 +85,10 @@ const Newspot = () => {
                             placeholder="Address...">
                         </input>
                     </label>
-                    <label>
-                        City
+                    <label >
+                        <div className="info">City</div>
                         <input
+                            className="input"
                             type="text"
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
@@ -92,9 +96,10 @@ const Newspot = () => {
                             placeholder="City...">
                         </input>
                     </label>
-                    <label>
-                        State
+                    <label >
+                        <div className="info">State</div>
                         <input
+                            className="input"
                             type="text"
                             value={state}
                             onChange={(e) => setState(e.target.value)}
@@ -102,9 +107,10 @@ const Newspot = () => {
                             placeholder="State...">
                         </input>
                     </label>
-                    <label>
-                        Country
+                    <label >
+                        <div className="info">Country</div>
                         <input
+                            className="input"
                             type="text"
                             value={country}
                             onChange={(e) => setCountry(e.target.value)}
@@ -112,9 +118,10 @@ const Newspot = () => {
                             placeholder="Country...">
                         </input>
                     </label>
-                    <label>
-                        longitude
+                    <label >
+                        <div className="info"> longitude</div>
                         <input
+                            className="input"
                             type="text"
                             value={lng}
                             onChange={(e) => setLng(e.target.value)}
@@ -122,9 +129,10 @@ const Newspot = () => {
                             placeholder="longitude...">
                         </input>
                     </label>
-                    <label>
-                        latitude
+                    <label >
+                        <div className="info">latitude</div>
                         <input
+                            className="input"
                             type="text"
                             value={lat}
                             onChange={(e) => setLat(e.target.value)}
@@ -132,9 +140,10 @@ const Newspot = () => {
                             placeholder="latitude...">
                         </input>
                     </label>
-                    <label>
-                        Description
+                    <label >
+                        <div className="info">Description</div>
                         <input
+                            className="input"
                             type="text"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
@@ -142,9 +151,10 @@ const Newspot = () => {
                             placeholder="Please provide descriptive as possible">
                         </input>
                     </label>
-                    <label>
-                        Price
+                    <label >
+                        <div className="info">Price</div>
                         <input
+                            className="input"
                             type="text"
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
@@ -152,18 +162,21 @@ const Newspot = () => {
                             placeholder="$...">
                         </input>
                     </label>
-                    <label>
-                        Image link
+                    <label >
+                        <div className="info">Image Link</div>
                         <input
+                            className="input"
                             type="text"
                             value={img}
                             onChange={(e) => setImg(e.target.value)}
-                            required>
+                            required
+                            placeholder="Image Link here...">
                         </input>
                     </label>
-                    <button type="submit">Submit</button>
+                    <button className='submit' type="submit">Submit</button>
                 </form>
-            </>
+            </div>
+            </div>
         )
     }
 

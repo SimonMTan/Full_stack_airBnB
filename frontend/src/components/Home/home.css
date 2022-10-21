@@ -2,30 +2,27 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-
-
 }
+
 .ind-spot {
     padding: 21px;
     display: flex;
     flex-direction: column;
     font-size: 17px;
     color: rgba(0, 0, 0, 0.895);
-
-
 }
+
 .ind-spot-img {
     width:290px;
     height:290px;
     border-radius: 10px;
     gap: 32px;
-
 }
 
 .ind-spot-firstline {
     display: flex;
-    /* flex-direction: row;
-    justify-content:space-around */
+    /* flex-direction: row;*/
+    justify-content:space-between;
     gap:170px;
     font-weight:600;
 }
