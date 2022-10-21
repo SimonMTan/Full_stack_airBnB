@@ -11,8 +11,8 @@ const Getspot = () => {
 
     const spotDetail = allspots.singleSpot
     const owner = allspots.singleSpot.Owner
-    const bigPic = allspots.singleSpot.SpotImages.filter(pic => pic.preview == true)
-    const smallPic = allspots.singleSpot.SpotImages.filter(pic => pic.preview == false )
+    const bigPic = allspots?.singleSpot?.SpotImages?.filter(pic => pic?.preview == true)
+    const smallPic = allspots?.singleSpot?.SpotImages?.filter(pic => pic?.preview == false )
 
     // console.log('AAA',allspots)
     // console.log(spotimg,' <<<<<<img')

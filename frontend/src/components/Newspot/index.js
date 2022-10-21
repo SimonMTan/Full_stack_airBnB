@@ -16,11 +16,11 @@ const Newspot = () => {
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
     const [country, setCountry] = useState('')
-    const [lat, setLat] = useState(0)
-    const [lng, setLng] = useState(0)
+    const [lat, setLat] = useState('')
+    const [lng, setLng] = useState('')
     const [description, setDescription] = useState('')
-    const [price, setPrice] = useState(0)
-    const [img, setImg] = useState('https://www.bhg.com/thmb/MzXGk-mqOteenA1mp5CH8dwAYTE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/white-modern-house-curved-patio-archway-c0a4a3b3-aa51b24d14d0464ea15d36e05aa85ac9.jpg')
+    const [price, setPrice] = useState('')
+    const [img, setImg] = useState('')
     const [errors, setErrors] = useState([]);
 
 
@@ -42,7 +42,7 @@ const Newspot = () => {
     //     dispatch(createspot({city,state,country,lat,lng,name,description,price}))
     // },[dispatch])
 
-    if (!sessionUser) return Error('need to signup or login')
+    // if (!sessionUser) return Error('need to signup or login')
     const handleSubmit = async(e) => {
         e.preventDefault()
         setErrors([]);

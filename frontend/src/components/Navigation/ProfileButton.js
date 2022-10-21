@@ -39,20 +39,20 @@ function ProfileButton({ user }) {
         <i class="fa-regular fa-user"></i>
       </button>
       {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
+        <div className="profile-dropdown">
+          <div>{user.username}</div>
+          <div>{user.email}</div>
+          <div>
             <button >
                 <NavLink to = {'/account'}>
                   Account
                 </NavLink>
               </button>
-          </li>
-          <li>
+          </div>
+          <div>
             <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
+          </div>
+        </div>
       )}
     </>
   );
