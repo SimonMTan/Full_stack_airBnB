@@ -1,27 +1,29 @@
 import { useDispatch } from "react-redux"
-import { editspot } from "../../store/spots";
+import { editspot,getspotdetail } from "../../store/spots";
 import React,{ useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
 
 const Editspot = () =>{
 
     const {spotId} = useParams()
-    console.log(spotId)
+    // console.log(spotId)
     const history = useHistory()
     const dispatch = useDispatch()
     const sessionUser = useSelector((state) => state.session.user);
-    console.log(sessionUser)
-    const [address,setAddress] = useState('')
-    const [name,setName] = useState('')
-    const [city,setCity] = useState('')
-    const [state,setState] = useState('')
-    const [country,setCountry] = useState('')
-    const [lat,setLat] = useState(0)
-    const [lng,setLng] = useState(0)
-    const [description,setDescription] = useState('')
-    const [price,setPrice] = useState(0)
+    const olddata = useSelector((state) => state.allSpots.singleSpot)
+    // console.log(sessionUser)
+    const [address,setAddress] = useState(olddata.address)
+    const [name,setName] = useState(olddata.name)
+    const [city,setCity] = useState(olddata.city)
+    const [state,setState] = useState(olddata.state)
+    const [country,setCountry] = useState(olddata.country)
+    const [lat,setLat] = useState(olddata.lat)
+    const [lng,setLng] = useState(olddata.lng)
+    const [description,setDescription] = useState(olddata.description)
+    const [price,setPrice] = useState(olddata.price)
     const [errors, setErrors] = useState([]);
 
 
@@ -40,8 +42,24 @@ const Editspot = () =>{
     },[address,city,state,country,lat,lng,name,description,price])
 
     useEffect(() =>{
+    dispatch(getspotdetail(spotId))
+    },[dispatch])
+
+    useEffect(() =>{
+        setAddress(olddata.address)
+        setName(olddata.name)
+        setCity(olddata.city)
+        setState(olddata.state)
+        setCountry(olddata.country)
+        setLat(olddata.lat)
+        setLng(olddata.lng)
+        setDescription(olddata.description)
+        setPrice(olddata.price)
+    },[olddata])
+
+    useEffect(() =>{
         // let info = {address,city,state,country,lat,lng,name,description,price}
-        dispatch(editspot({address,city,state,country,lat,lng,name,description,price}))
+        dispatch(editspot({address,city,state,country,lat,lng,name,description,price},spotId))
     },[address,city,state,country,lat,lng,name,description,price])
 
     const handleSubmit = (e) =>{

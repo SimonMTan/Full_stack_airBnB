@@ -158,7 +158,8 @@ const spotReducer = (state = initState,action) =>{
         return newState
 
         case EDIT_SPOT:
-        const spotnewInfo = {...action.payload}
+        const spotnewInfo = action.payload
+        newState.singleSpot = {...state.singleSpot}
         newState.singleSpot = spotnewInfo
         return newState
 
