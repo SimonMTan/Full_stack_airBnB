@@ -18,7 +18,7 @@ const Account  = () => {
     // console.log(x)
     // console.log(y)
     // console.log('these are imgs',imgs)
-
+ //..
     const [isloaded, setIsloaded] = useState(0)
     useEffect(() => {
         dispatch(sessionActions.restoreUser())

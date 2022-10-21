@@ -6,6 +6,7 @@
 .spot-detail{
     display:flex;
     flex-direction: row;
+    
 }
 
 .account-pic{
