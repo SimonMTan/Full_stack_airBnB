@@ -1,0 +1,17 @@
+.reviewbox{
+    margin-top: 10px;
+}
+
+.review-name{
+    margin-top:3px;
+    font-size: 20px;
+}
+
+.review-time{
+    margin-top:3px;
+}
+
+.review-detail{
+    margin-top:3px;
+    margin-bottom:4px;
+}
