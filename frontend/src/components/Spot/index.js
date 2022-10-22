@@ -26,8 +26,9 @@ const Getspot = () => {
         dispatch(getspotdetail(spotId))
         return () => dispatch(clear_spot())
     },[dispatch])
+    //this stop from preloading the material on the page and let page hit use-effect
     if(Object.values(allspots.singleSpot).length == 1)return null
-    
+
     return (
         <>
         <div className="spotdetail-container">

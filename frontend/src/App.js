@@ -30,9 +30,9 @@ function App() {
           <Route path='/' exact>
             <Home />
           </Route>
-          <Route path="/signup" exact>
+          {/* <Route path="/signup" exact>
             <SignupFormPage />
-          </Route>
+          </Route> */}
           <Route path='/spots/createspot'>
             <Newspot />
           </Route>
@@ -61,5 +61,3 @@ function App() {
 }
 
 export default App;
-
-

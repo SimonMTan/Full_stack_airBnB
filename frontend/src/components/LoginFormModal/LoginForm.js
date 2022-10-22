@@ -27,7 +27,7 @@ function LoginForm() {
   };
 
   return (
-    <div className="container">
+    <div className="logincontainer">
       <h1>Welcome to i_BnB </h1>
       <form onSubmit={handleSubmit}>
         <ul>

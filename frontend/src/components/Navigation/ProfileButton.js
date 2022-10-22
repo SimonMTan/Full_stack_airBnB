@@ -31,9 +31,9 @@ function ProfileButton({ user }) {
 
   return (
     <>
-    <button>
+    <div className='navbar-right-left'>
       <NavLink to={'/spots/createspot'}>become a host</NavLink>
-    </button>
+    </div>
       <button onClick={openMenu} className='navbar-right'>
         <i class="fa-solid fa-bars"></i>
         <i class="fa-regular fa-user"></i>
