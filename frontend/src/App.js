@@ -30,9 +30,6 @@ function App() {
           <Route path='/' exact>
             <Home />
           </Route>
-          {/* <Route path="/signup" exact>
-            <SignupFormPage />
-          </Route> */}
           <Route path='/spots/createspot'>
             <Newspot />
           </Route>
@@ -51,9 +48,6 @@ function App() {
           <Route path='/spots/:spotId/newreview' exact>
             <Createreview />
           </Route>
-          {/* <Route>
-            Sorry! Page not found
-          </Route> */}
         </Switch>
       )}
     </>
