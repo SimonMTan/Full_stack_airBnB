@@ -15,15 +15,15 @@ const Editspot = () =>{
     const sessionUser = useSelector((state) => state.session.user);
     const olddata = useSelector((state) => state.allSpots.singleSpot)
     // console.log(sessionUser)
-    const [address,setAddress] = useState(olddata.address)
-    const [name,setName] = useState(olddata.name)
-    const [city,setCity] = useState(olddata.city)
-    const [state,setState] = useState(olddata.state)
-    const [country,setCountry] = useState(olddata.country)
-    const [lat,setLat] = useState(olddata.lat)
-    const [lng,setLng] = useState(olddata.lng)
-    const [description,setDescription] = useState(olddata.description)
-    const [price,setPrice] = useState(olddata.price)
+    const [address,setAddress] = useState('')
+    const [name,setName] = useState('')
+    const [city,setCity] = useState('')
+    const [state,setState] = useState('')
+    const [country,setCountry] = useState('')
+    const [lat,setLat] = useState('')
+    const [lng,setLng] = useState('')
+    const [description,setDescription] = useState('')
+    const [price,setPrice] = useState('')
     const [errors, setErrors] = useState([]);
 
 
@@ -57,14 +57,26 @@ const Editspot = () =>{
         setPrice(olddata.price)
     },[olddata])
 
-    useEffect(() =>{
-        // let info = {address,city,state,country,lat,lng,name,description,price}
-        dispatch(editspot({address,city,state,country,lat,lng,name,description,price},spotId))
-    },[address,city,state,country,lat,lng,name,description,price])
+    // useEffect(() =>{
+    //     // let info = {address,city,state,country,lat,lng,name,description,price}
+    //     dispatch(editspot({address,city,state,country,lat,lng,name,description,price},spotId))
+    // },[address,city,state,country,lat,lng,name,description,price])
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        setErrors([]);
+        // setErrors([])
+        // const err = []
+        // if(!address)err.push('Please provide address')
+        // if(!city)err.push('Please provide city')
+        // if(!state)err.push('Please provide state')
+        // if(!country)err.push('Please provide country')
+        // if(!lat )err.push('Please provide correct latitude')
+        // if(!lng )err.push('Please provide correct longitude')
+        // if(!name)err.push('Please provide name')
+        // if(!description)err.push('Please provide description')
+        // if(!price || price <= 0)err.push('Please provide valid price')
+        // setErrors(err)
+        if(errors.length>0){return}
         history.push('/account')
         let info = {address,city,state,country,lat,lng,name,description,price}
         return dispatch(editspot(info,spotId)).catch(

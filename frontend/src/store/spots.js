@@ -5,6 +5,7 @@ const GET_SPOTDETAIL = 'spots/detail'
 const CREATE_SPOT = 'spots/create'
 const EDIT_SPOT = 'spots/edit'
 const DELETE_SPOT = 'spots/delete'
+const CLEAR_SPOT = 'spots/clear'
 // const CURRENTUSER_SPOT = 'spots/userspots'
 
 //...ACTIONS...
@@ -43,6 +44,14 @@ const delete_spot = (id) =>{
         payload:id
     }
 }
+
+export const clear_spot = () =>{
+    return{
+        type:CLEAR_SPOT
+    }
+}
+
+
 
 // const get_allspots_currentuser = (data) =>{
 //     return {
@@ -117,7 +126,7 @@ export const editspot = (info,spotId) => async dispatch =>{
     })
     if(response.ok){
     const data = await response.json()
-    dispatch(edit_spot(data))
+    // dispatch(edit_spot(data))
     return data
 }}
 
@@ -157,14 +166,18 @@ const spotReducer = (state = initState,action) =>{
         // console.log('newstate inside reducer', newState)
         return newState
 
-        case EDIT_SPOT:
-        const spotnewInfo = action.payload
-        newState.singleSpot = {...state.singleSpot}
-        newState.singleSpot = spotnewInfo
-        return newState
+        // case EDIT_SPOT:
+        // const spotnewInfo = action.payload
+        // newState.singleSpot = {...state.singleSpot}
+        // newState.singleSpot = spotnewInfo
+        // return newState
 
         case DELETE_SPOT:
         delete newState.allSpots[action.payload]
+        return newState
+
+        case CLEAR_SPOT:
+        newState.singleSpot = {SpotImages:[]}
         return newState
 
         // case CURRENTUSER_SPOT:

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getspotdetail } from "../../store/spots";
 import Getreview from "../Review/Getreview_spot";
+import { clear_spot } from "../../store/spots";
+
 import './spotdetail.css'
 const Getspot = () => {
     const dispatch = useDispatch();
@@ -22,9 +24,10 @@ const Getspot = () => {
 
     useEffect(() =>{
         dispatch(getspotdetail(spotId))
+        return () => dispatch(clear_spot())
     },[dispatch])
-    if(!allspots)return null
-
+    if(Object.values(allspots.singleSpot).length == 1)return null
+    
     return (
         <>
         <div className="spotdetail-container">
