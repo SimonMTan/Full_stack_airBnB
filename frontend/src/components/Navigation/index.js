@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginFormModal/LoginForm.js'
 import SignupFormPage from '../SignupFormPage/SignupForm.js'
-import './index_sec.css';
+import './index.css';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
