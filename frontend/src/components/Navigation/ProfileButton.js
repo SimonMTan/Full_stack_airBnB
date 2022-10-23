@@ -39,8 +39,8 @@ function ProfileButton({ user }) {
       <NavLink to={'/spots/createspot'}><div className="createspot">Become a Host</div></NavLink>
     </div>
       <button onClick={toggleMenu} className='navbar-right-new'>
-        <i class="fa-solid fa-bars"></i>
-        <i class="fa-regular fa-user"></i>
+        <i className="fa-solid fa-bars"></i>
+        <i className="fa-regular fa-user"></i>
       </button>
       {showMenux && (
         <div className="profile-dropdown">

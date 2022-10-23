@@ -26,14 +26,14 @@ const Newspot = () => {
 
     useEffect(() => {
         const err = []
-        if (!name) err.push('Please provide name')
-        if (!address) err.push('Please provide address')
-        if (!city) err.push('Please provide city')
-        if (!state) err.push('Please provide state')
-        if (!country) err.push('Please provide country')
+        if (!name || name.length >15) err.push('Please provide name with less than 15 chars')
+        if (!address) err.push('Please provide address with less than 20 chars')
+        if (!city) err.push('Please provide city with less than 15 chars')
+        if (!state) err.push('Please provide state with less than 15 chars')
+        if (!country) err.push('Please provide country with less than 15 chars')
         if (!lat) err.push('Please provide correct latitude')
         if (!lng) err.push('Please provide correct longitude')
-        if (!description) err.push('Please provide description')
+        if (!description) err.push('Please provide descriptionwith less than 255 chars')
         if (!price && price <= 0) err.push('Please provide valid price')
         if (!img || (!img.endsWith('.png') && !img.endsWith('.jpg'))) err.push('Please provide valid image link with .png/.jpg')
         setErrors(err)
@@ -57,7 +57,7 @@ const Newspot = () => {
     }
     return (
         <div className="createspotform">
-            <h1 className="title">Let create a wonderful home for visitor</h1>
+            <h1 className="title">Let host a special spot for Adventures</h1>
             <div className='spotform'>
                 <form onSubmit={handleSubmit}>
                     {errors.length > 0 && (
@@ -177,7 +177,7 @@ const Newspot = () => {
                             placeholder="Image Link here...">
                         </input>
                     </label>
-                    <button className='submit' type="submit">Submit</button>
+                    <button className='submit' disabled={!!errors.length} type="submit">Submit</button>
                 </form>
             </div>
         </div>

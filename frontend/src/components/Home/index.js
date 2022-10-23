@@ -20,6 +20,7 @@ const Getallspots = () => {
         <>
          <div className="spot-container">
                 {arrspots.map(spot => (
+                    <div className="ind-spot-wrapper">
                     <NavLink to={`/spots/${spot.id}`}>
                         <div className="ind-spot" >
                             <img src={spot?.previewImage[0]} alt ={spot.previewImage} className='ind-spot-img'/>
@@ -32,6 +33,7 @@ const Getallspots = () => {
                             <div ><b>${spot.price}</b> per night</div>
                         </div>
                     </NavLink>
+                    </div>
                 ))}
             </div>
         </>

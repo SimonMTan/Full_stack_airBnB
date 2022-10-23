@@ -49,8 +49,8 @@
     border: 1px solid #dddddd ;
     border-radius: 15px;
     float:right;
-    height: 95px;
-    width: 150px;
+    height: 105px;
+    width: 230px;
     z-index: 1;
     position: absolute;
     right:70px;
@@ -75,15 +75,16 @@
 
 .profile-dropdownchild {
     margin:2%;
-    margin-left:5%;
+    margin-left:4%;
     padding-left:5%;
 }
 
 .clickable:hover{
     background-color: #f0ecec;
-    margin:0;
-    padding:0;
-    width:max-content;
+    /* margin-left:0; */
+    padding-left:5%;
+    width:210px;
+    margin-left:-10%;
     text-decoration: none;
 }
 

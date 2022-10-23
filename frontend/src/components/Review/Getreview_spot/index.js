@@ -33,7 +33,7 @@ const Getreview = ({}) =>{
                 {!filteruserid.length && currentUser && notowner?.id !== currentUser?.id &&(
                     <div>
                     <NavLink to={`/spots/${spotId}/newreview`}>
-                        <div className="leavereview"> Leave A Review? </div>
+                        <button className="leavereview"> Leave A Review? </button>
                     </NavLink>
                 </div>
                 )}

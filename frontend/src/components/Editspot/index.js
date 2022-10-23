@@ -30,14 +30,14 @@ const Editspot = () => {
 
     useEffect(() => {
         const err = []
-        if (!address) err.push('Please provide address')
-        if (!city) err.push('Please provide city')
-        if (!state) err.push('Please provide state')
-        if (!country) err.push('Please provide country')
+        if (!address || address.length >20 ) err.push('Please provide address with less than 20 chars')
+        if (!city || city.length >15) err.push('Please provide city with less than 15 chars')
+        if (!state || state.length >15) err.push('Please provide state with less than 15 chars')
+        if (!country || country.length >15) err.push('Please provide country with less than 15 chars')
         if (!lat) err.push('Please provide correct latitude')
         if (!lng) err.push('Please provide correct longitude')
-        if (!name) err.push('Please provide name')
-        if (!description) err.push('Please provide description')
+        if (!name || name.length>15) err.push('Please provide name with less than 15 chars')
+        if (!description || description.length>255) err.push('Please provide descriptionwith less than 255 chars')
         if (!price || price <= 0) err.push('Please provide valid price')
         setErrors(err)
     }, [address, city, state, country, lat, lng, name, description, price])
@@ -90,7 +90,8 @@ const Editspot = () => {
     return (
         <div className="editspotform">
             <div className='editspot'>
-                <form onSubmit={handleSubmit}>
+                <div className='editspotformwrapper'>
+                    <form  onSubmit={handleSubmit}>
                     {errors.length > 0 && (
                         <div className="error-editspot">
                             {errors.map((error, idx) => (
@@ -199,6 +200,7 @@ const Editspot = () => {
                     </label>
                     <button className='submit' type="submit">Submit</button>
                 </form>
+                    </div>
             </div>
         </div>
     )

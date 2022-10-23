@@ -15,7 +15,7 @@ const Createreview = () => {
 
     useEffect(() => {
         const err = []
-        if (!review || review.length<10) err.push('Please provide review with more than 10 characters')
+        if (!review || review.length<10 || review.length>255) err.push('Please provide review with less than 10 or more than 255 characters')
         if (!stars) err.push('Please provide rating before submit')
         setErrors(err)
     }, [review, stars])
@@ -24,7 +24,7 @@ const Createreview = () => {
         e.preventDefault()
         setErrors([])
         const info = { review, stars: +stars }
-        
+
         const data = await dispatch(createreview(info, +spotId)).catch(
             async (res) => {
                 const response = res.json()
@@ -49,10 +49,12 @@ const Createreview = () => {
                             ))}
                         </div>
                     )}
-                    <h2 className="title-review">Review</h2>
+                    <h2 className="title-review">Review
+                        <div className='charactercount'>{` ${255-review.length} chars. remaining`}</div>
+                    </h2>
                     <textarea className="textarea" value={review} onChange={(e) => setReview(e.target.value)} />
                     <h3 className="title-rating">Rating</h3>
-                    <div className="radio">
+                    <div className="radiox">
                         <label>
                             <div></div>
                             <input

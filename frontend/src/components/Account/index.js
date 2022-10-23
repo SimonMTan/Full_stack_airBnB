@@ -38,7 +38,7 @@ const Account  = () => {
             {/* <div> */}
             <div className="spot-detail">
                 {imgs?.map((spot) => (
-                    <span key={spot?.id}>
+                    <span className="ind-spot-detail-wrapper" key={spot?.id}>
                         <img className='account-pic' src={spot?.previewImage[0]}></img>
                         <div className="account-button-container">
                             <button className="account-button">

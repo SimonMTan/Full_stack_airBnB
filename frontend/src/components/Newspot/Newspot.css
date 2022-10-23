@@ -1,11 +1,13 @@
 .info{
     font-size: 15px;
+    padding:2px;
 }
 
 .input {
-    width: 95%;
+    width: 91%;
     padding: 10px 10px;
     margin: 10px ;
+    border-radius: 15px;
     /* box-sizing: border-box; */
 }
 
@@ -14,6 +16,7 @@
     justify-content: center;
     flex-direction: column;
     align-content: center;
+
 
 }
 .spotform , .title{
@@ -25,7 +28,8 @@
 .spotform form{
     border: solid 1px;
     width:500px;
-    padding: 10px 10px
+    padding: 10px 10px;
+    border-radius: 20px;
 }
 
 .error-createspot{

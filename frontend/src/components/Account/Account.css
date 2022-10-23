@@ -39,3 +39,8 @@
 a:visited , a:link{
     text-decoration: none;
 }
+
+.ind-spot-detail-wrapper{
+    width:33%;
+    margin:10px 2px;
+}

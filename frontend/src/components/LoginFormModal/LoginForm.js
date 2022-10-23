@@ -67,8 +67,8 @@ function LoginForm() {
             placeholder="Your Password..."
           />
         </label>
-        <button type="submit" disabled={!!errors.length} className='loginButton'>Log In</button>
-        <button type="submit" className='loginButton' onClick={() => {setCredential('demo@user.io'); setPassword('password')}}>demoUser</button>
+        <button type="submit" disabled={!!errors.length} className='loginButton1'>Log In</button>
+        <button type="submit" className='loginButton2' onClick={() => {setCredential('demo@user.io'); setPassword('password')}}>Demo-user</button>
       </form>
     </div>
   );

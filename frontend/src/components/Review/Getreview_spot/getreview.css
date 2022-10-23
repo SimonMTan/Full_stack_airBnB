@@ -20,10 +20,14 @@
     text-decoration: none;
     color:black;
     border: 3px;
+    background-color:#FF385C ;
+    border-radius: 10px;
+    height: auto;
 }
 
 .leavereview:hover{
     background-color: #f0ecec;
     width:fit-content;
-    color:#FF385C;
+    color:white;
+    background-color: #FF385C;
 }
