@@ -15,3 +15,15 @@
     margin-top:3px;
     margin-bottom:4px;
 }
+
+.leavereview{
+    text-decoration: none;
+    color:black;
+    border: 3px;
+}
+
+.leavereview:hover{
+    background-color: #f0ecec;
+    width:fit-content;
+    color:#FF385C;
+}

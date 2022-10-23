@@ -49,7 +49,7 @@ export const createreview = (info,spotId) => async dispatch =>{
     })
     if(response.ok){
         const data = await response.json()
-        // dispatch(create_review_spot(data))
+        dispatch(create_review_spot(data))
         return data
     }
 }
@@ -77,9 +77,9 @@ const reviewReducer = (state = initState,action) =>{
             newState.spotReviews = allreview
             return newState
 
-        // case CREATE_REVIEW:
-        //     newState[action.payload.id]=action.payload
-        //     return newState
+        case CREATE_REVIEW:
+            newState.spotReviews[action.payload.id]=action.payload
+            return newState
 
         case DELETE_REVIEW:
             delete newState.spotReviews[action.payload]
