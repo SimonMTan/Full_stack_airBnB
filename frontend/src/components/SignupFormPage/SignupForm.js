@@ -26,7 +26,7 @@ function SignupFormPage() {
           const data = await res.json();
             if (data && data.errors){
               let valerror = []
-              valerror.push(data.errors)
+              valerror.push(data.errors.email)
               setErrors(valerror)
             }
           });
