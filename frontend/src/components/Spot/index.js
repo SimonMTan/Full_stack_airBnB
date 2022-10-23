@@ -36,7 +36,7 @@ const Getspot = () => {
             <span className="spotinfo">
                 ★{spotDetail.numReviews === 0 ? "New" : spotDetail.avgStarRating} {'  '}
                 <u>{spotDetail.numReviews} {spotDetail.numReviews < 2 ? 'review':'reviews'}</u>
-                · <u>{spotDetail.city},{spotDetail.state},{spotDetail.country}</u>
+                · <u>{spotDetail.city }, {spotDetail.state},{spotDetail.country}</u>
             </span>
             <div className="pic-wrapper">
                 <div className="bigpicwrapper">

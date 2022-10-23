@@ -30,7 +30,7 @@
     border: 1px solid white;
     text-decoration: none;
     width:120px;
-    height: 25px;
+    height: 40px;
     align-items: center;
     justify-content: center;
     text-decoration: none!important;
@@ -83,12 +83,13 @@
     background-color: #f0ecec;
     margin:0;
     padding:0;
-    width:fit-content;
+    width:max-content;
     text-decoration: none;
 }
 
-.clickable:visited .clickable:link{
-    text-decoration:none;
+.clickable{
+    text-decoration: none;
+    color:black
 }
 
 .login-new , .signup-new{
@@ -129,4 +130,5 @@
 .createspot{
     color:black;
     text-decoration: none;
+    font-size: 15px;
 }

@@ -21,6 +21,10 @@
     border-radius: 20px;
     gap: 32px;
 }
+.ind-spot-img:hover {
+    opacity: .8;
+    box-shadow: 2px 2px #888888;
+}
 
 .ind-spot-firstline {
     display: flex;

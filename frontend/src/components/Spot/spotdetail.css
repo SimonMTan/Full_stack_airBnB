@@ -18,19 +18,24 @@
 
  .pic-wrapper {
     display:flex;
-    height:570px;
+    height:25%;
     width:100%;
     flex-wrap:nowrap;
     }
 
 
 .bigPic {
-    width:100%;
-    height:100%;
-    /* padding:5px 5px; */
+    width:98%;
+    height:95%;
+    padding:1%;
     /* border-left: 20px; */
     border-radius: 15px 0 0 15px;
     object-fit: cover;
+}
+
+.bigPic:hover{
+    opacity: .9;
+    /* box-shadow: 1px 1px #888888; */
 }
 
 .bigpicwrapper {
@@ -39,16 +44,21 @@
 .smallPics {
     display:flex;
     flex-wrap:wrap;
-    width:50%;
+    width:49%;
     height:100%;
     object-fit: cover;
 }
 
 .smallpic {
-    width:50%;
+    width:45%;
     height:50%;
     /* padding:5px 5px 0px; */
+    padding:2%;
     object-fit: cover;
+}
+
+.smallpic:hover{
+    opacity: .9;
 }
 
 .right-top{
@@ -72,6 +82,7 @@
     border-width: 1px;
     border-color: rgba(0, 0, 0, .20);
     height:54px;
+    width:80%;
 }
 
 .guests{
@@ -80,6 +91,7 @@
     border-width: 1px;
     border-color: rgba(0, 0, 0, .20);
     padding:20px 0px;
+    width:80%;
 }
 
 .static-info{
@@ -93,6 +105,7 @@
     border-style: none none solid;
     border-width: 1px;
     border-color: rgba(0, 0, 0, .20);
+    width:80%;
 }
 
 .middle{
@@ -105,34 +118,34 @@
 }
 
 .middle-right{
-    width:25%;
-    height:250px;
+    width:70%;
+    height:100%;
     border-radius: 20px;
     border-style:solid;
     border-width: 1px;
     border-color: #dddddd;
-    margin-left: 35px;
+    margin-left: 25px;
     margin-top: 20px;
     position: sticky;
     top: 0;
 }
 
 .middle-rightinfo-big{
-    font-size:30px;
+    font-size:25px;
     padding:10px;
 }
 
 .middle-rightinfo {
-    font-size:20px;
+    font-size:15px;
     padding:10px;
 
 }
 .total{
-    font-size:22px;
+    font-size:18px;
     padding:10px;
 }
 .middle-rightinfo-last{
-    font-size:20px;
+    font-size:15px;
     padding:10px;
     border-style: none none solid;
     border-width: 1px;

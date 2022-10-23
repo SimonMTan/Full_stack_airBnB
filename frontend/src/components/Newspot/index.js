@@ -34,7 +34,7 @@ const Newspot = () => {
         if (!lat) err.push('Please provide correct latitude')
         if (!lng) err.push('Please provide correct longitude')
         if (!description) err.push('Please provide description')
-        if (!price || price <= 0) err.push('Please provide valid price')
+        if (!price && price <= 0) err.push('Please provide valid price')
         if (!img || (!img.endsWith('.png') && !img.endsWith('.jpg'))) err.push('Please provide valid image link with .png/.jpg')
         setErrors(err)
     }, [address, city, state, country, lat, lng, name, description, price, img])
