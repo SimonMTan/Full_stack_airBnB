@@ -1,0 +1,9 @@
+.delete-can{
+    background-color: #FF385C;
+}
+
+.delete-can:hover{
+    opacity: .8;
+    font-size: larger;
+    cursor:pointer
+}

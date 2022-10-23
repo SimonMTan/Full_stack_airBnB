@@ -2,7 +2,7 @@ import { getreview , deletereview } from "../../../store/reviews";
 import { useDispatch, useSelector } from "react-redux";
 // import {useParams} from 'react-router-dom'
 import { getspotdetail } from "../../../store/spots";
-import './deletereview.css'
+import './review.css'
 
 const Deletereview =({reviewId,spotId}) =>{
     const dispatch = useDispatch()
