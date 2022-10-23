@@ -24,7 +24,7 @@ const Createreview = () => {
         e.preventDefault()
         setErrors([])
         const info = { review, stars: +stars }
-        console.log(info,review,stars,spotId , typeof(+stars),typeof(+spotId))
+        
         const data = await dispatch(createreview(info, +spotId)).catch(
             async (res) => {
                 const response = res.json()
