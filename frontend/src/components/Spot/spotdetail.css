@@ -1,8 +1,8 @@
 .spotdetail-container{
     display:flex;
     flex-direction:column;
-    padding-left:20%;
-    padding-right:20%
+    padding-left:18%;
+    padding-right:18%
 
 }
 
@@ -40,21 +40,27 @@
 
 .bigpicwrapper {
     width:50%;
+    /* padding:1px; */
+
 }
+
 .smallPics {
     display:flex;
     flex-wrap:wrap;
-    width:49%;
-    height:100%;
-    object-fit: cover;
+    width:50%;
+    /* height:100%; */
+    /* object-fit: fill; */
 }
 
 .smallpic {
-    width:45%;
-    height:50%;
+    width:50%;
+    height:45%;
+    padding-top:2pt;
+    /* padding-right:1px; */
+    /* padding:1px; */
     /* padding:5px 5px 0px; */
-    padding:2%;
-    object-fit: cover;
+    /* padding:2px; */
+    /* object-fit: fill; */
 }
 
 .smallpic:hover{
