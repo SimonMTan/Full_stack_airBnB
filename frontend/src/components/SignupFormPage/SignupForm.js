@@ -24,8 +24,12 @@ function SignupFormPage() {
       return dispatch(sessionActions.signup({ email, username, password,firstName,lastName }))
         .catch(async (res) => {
           const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-        });
+            if (data && data.errors){
+              let valerror = []
+              valerror.push(data.errors)
+              setErrors(valerror)
+            }
+          });
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };

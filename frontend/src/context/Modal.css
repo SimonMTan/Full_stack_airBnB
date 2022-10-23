@@ -7,6 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: auto;
   }
 
   #modal-background {
@@ -16,12 +17,15 @@
     left: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.7);
+    /* overflow: auto; */
+    /* height: 500px; */
   }
 
   #modal-content {
     position: absolute;
     background-color:#f2f2f2;
-    width: 400px;
-    height: 400px;
+    /* width: 500px;
+    height: 600px; */
     border-radius: 15px;
+    /* overflow: auto; */
   }

@@ -3,8 +3,11 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
     width:100%;
     border-radius:25px;
+    /* overflow: auto; */
 }
 .signup-display{
     border: 3px solid;
@@ -18,10 +21,14 @@
 
 .signupButton{
     background-color: #FF385C;
-    margin-left: 25%;
+    /* margin-left: 25%; */
+    display:flex;
+    /* align-items: center; */
+    justify-content: center;
     width:50%;
     border-radius: 15px;
     margin-top: 15px;
+    margin-left:25%
 }
 
 .thankyou{

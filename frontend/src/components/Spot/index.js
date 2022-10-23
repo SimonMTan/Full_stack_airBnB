@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React,{ useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getspotdetail } from "../../store/spots";
@@ -57,10 +57,21 @@ const Getspot = () => {
                         Hosting By {owner?.firstName} {owner?.lastName}
                     </div>
                     <div className="guests">4 guests · 2 beds · 1bath</div>
-                    <div className='static-info'>Great location</div>
-                    <div>95% of recent guests gave the location a 5-star rating.</div>
-                    <div className='static-info'>Great check-in experience</div>
-                    <div className='static-info lastone'>Free cancellation before 48 hours</div>
+                    <div className="block3">
+                        <div className="icon-x"><i className="fa-regular fa-map"></i></div>
+                        <div clasName='icon-x-2'>
+                            <div className='static-info'>Great location</div>
+                            <div className="static-info2">95% of recent guests gave the location a 5-star rating.</div>
+                        </div>
+                    </div>
+                    <div className="block2">
+                        <i className="fa-regular fa-calendar-check"></i>
+                        <div className='static-info'>Great check-in experience</div>
+                    </div>
+                    <div className="block2">
+                        <i className="fa-solid fa-xmark"></i>
+                        <div className='static-info lastone'>Free cancellation before 48 hours</div>
+                    </div>
 
                     <div className="spot-desc">{spotDetail?.description}</div>
                 </div>

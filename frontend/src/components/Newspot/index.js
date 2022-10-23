@@ -31,10 +31,10 @@ const Newspot = () => {
         if (!city) err.push('Please provide city with less than 15 chars')
         if (!state) err.push('Please provide state with less than 15 chars')
         if (!country) err.push('Please provide country with less than 15 chars')
-        if (!lat) err.push('Please provide correct latitude')
-        if (!lng) err.push('Please provide correct longitude')
+        if (!lat || !((lat>=0) || (lat <0))) err.push('Please provide correct latitude')
+        if (!lng || !((lng>=0) || (lng <0))) err.push('Please provide correct longitude')
         if (!description) err.push('Please provide descriptionwith less than 255 chars')
-        if (!price && price <= 0) err.push('Please provide valid price')
+        if (!price || !(price > 0)) err.push('Please provide valid price')
         if (!img || (!img.endsWith('.png') && !img.endsWith('.jpg'))) err.push('Please provide valid image link with .png/.jpg')
         setErrors(err)
     }, [address, city, state, country, lat, lng, name, description, price, img])
@@ -129,7 +129,7 @@ const Newspot = () => {
                             type="text"
                             value={lng}
                             onChange={(e) => setLng(e.target.value)}
-                            required
+                            // required
                             placeholder="longitude...">
                         </input>
                     </label>

@@ -46,6 +46,10 @@
     width: 97%;
 }
 
+.submit:active{
+    cursor:pointer
+}
+
 .errortitle{
     font-size:24px ;
     color: #FF385C

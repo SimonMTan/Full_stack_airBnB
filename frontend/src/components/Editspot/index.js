@@ -34,11 +34,11 @@ const Editspot = () => {
         if (!city || city.length >15) err.push('Please provide city with less than 15 chars')
         if (!state || state.length >15) err.push('Please provide state with less than 15 chars')
         if (!country || country.length >15) err.push('Please provide country with less than 15 chars')
-        if (!lat) err.push('Please provide correct latitude')
-        if (!lng) err.push('Please provide correct longitude')
+        if (!((lat>=0) || (lat <0))) err.push('Please provide correct latitude')
+        if (!((lng>=0) || (lng <0))) err.push('Please provide correct longitude')
         if (!name || name.length>15) err.push('Please provide name with less than 15 chars')
         if (!description || description.length>255) err.push('Please provide descriptionwith less than 255 chars')
-        if (!price || price <= 0) err.push('Please provide valid price')
+        if (!price || !(price > 0)) err.push('Please provide valid price')
         setErrors(err)
     }, [address, city, state, country, lat, lng, name, description, price])
 
@@ -198,7 +198,7 @@ const Editspot = () => {
                             placeholder="$...">
                         </input>
                     </label>
-                    <button className='submit' type="submit">Submit</button>
+                    <button className='submit' disabled={!!errors.length} type="submit">Submit</button>
                 </form>
                     </div>
             </div>

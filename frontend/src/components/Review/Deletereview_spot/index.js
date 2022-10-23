@@ -2,6 +2,7 @@ import { getreview , deletereview } from "../../../store/reviews";
 import { useDispatch, useSelector } from "react-redux";
 // import {useParams} from 'react-router-dom'
 import { getspotdetail } from "../../../store/spots";
+import './deletereview.css'
 
 const Deletereview =({reviewId,spotId}) =>{
     const dispatch = useDispatch()
@@ -14,9 +15,8 @@ const Deletereview =({reviewId,spotId}) =>{
     }
 
     return(
-        <button type='button' onClick={deletereviewhandle}>
-            {/* <i class="fa-light fa-trash"></i> */}
-            Delete
+        <button className='delete-can'type='button' onClick={deletereviewhandle}>
+            <i className="fa-regular fa-trash-can"></i>
         </button>
     )
 

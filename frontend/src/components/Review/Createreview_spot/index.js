@@ -15,7 +15,7 @@ const Createreview = () => {
 
     useEffect(() => {
         const err = []
-        if (!review || review.length<10 || review.length>255) err.push('Please provide review with less than 10 or more than 255 characters')
+        if (!review || review.length<10 || review.length>255) err.push('Please provide review with more than 10 but less than 255 characters')
         if (!stars) err.push('Please provide rating before submit')
         setErrors(err)
     }, [review, stars])
@@ -109,7 +109,7 @@ const Createreview = () => {
                         </label>
                     </div>
                     {/* <div clssName='submitbut'> */}
-                    <button className='submitbut' type="submit">Submit</button>
+                    <button className='submitbut' disabled={!!errors.length} type="submit">Submit</button>
                     {/* </div> */}
                 </form>
             </div>

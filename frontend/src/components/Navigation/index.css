@@ -86,6 +86,7 @@
     width:210px;
     margin-left:-10%;
     text-decoration: none;
+    cursor:pointer
 }
 
 .clickable{
@@ -100,10 +101,12 @@
 
 .login-new:hover {
     border-radius: 15px 15px 0px 0px;
+    cursor:pointer
 }
 
 .signup-new:hover{
     border-radius: 0px 0px 15px 15px;
+    cursor:pointer
 }
 
 .login-new:hover , .signup-new:hover {
