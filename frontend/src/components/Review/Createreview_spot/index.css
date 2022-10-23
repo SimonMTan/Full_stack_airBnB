@@ -1,0 +1,49 @@
+.createreviewform{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    height:500px
+
+}
+.reviewform{
+    display:flex;
+    justify-content: center;
+    height:400px;
+    margin:5px;
+}
+
+.reviewform form{
+    border: solid 1px;
+    width:500px;
+    padding: 10px 10px;
+    margin:5px;
+}
+
+.error-createreview{
+    margin: 0 10px 20px 1px;
+    padding: 5px 0px 5px 14px;
+    background-color:#FF385C ;
+    border-radius: 10px;
+    color:white;
+    width:96%;
+}
+
+.textarea{
+    height:100px;
+    width:97%;
+    margin-left: 4px;
+}
+
+.submitbut{
+    background-color: #FF385C;
+    margin-top: 15px;
+    margin-left:5px;
+    width: 98%;
+    height: 30px;
+}
+
+.radio{
+    width:max-content;
+    justify-content: space-between;
+}

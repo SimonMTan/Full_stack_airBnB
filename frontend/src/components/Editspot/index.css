@@ -1,0 +1,45 @@
+.editspotform{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+
+}
+
+ .editspot{
+    display:flex;
+    justify-content: center;
+
+ }
+
+ .editspot form {
+    border: solid 1px;
+    width:500px;
+    padding: 10px 10px
+ }
+
+ .error-editspot{
+    margin: 0 10px 20px 10px;
+    padding: 5px 0px 5px 14px;
+    background-color:#FF385C ;
+    border-radius: 10px;
+    color:white;
+ }
+
+.info{
+    font-size: 15px;
+}
+
+.input {
+    width: 90%;
+    padding: 10px 10px;
+    margin: 10px;
+    /* box-sizing: border-box; */
+}
+
+.submit{
+    background-color: #FF385C;
+    margin: 15px 10px;
+    width:95%;
+    height: 30px;
+}
