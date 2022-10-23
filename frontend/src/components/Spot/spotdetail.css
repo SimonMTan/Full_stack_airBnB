@@ -25,26 +25,29 @@
 
 
 .bigPic {
-    width:500px;
-    height:500px;
-    padding:5px 5px;
+    width:100%;
+    height:100%;
+    /* padding:5px 5px; */
     /* border-left: 20px; */
     border-radius: 15px 0 0 15px;
     object-fit: cover;
 }
 
+.bigpicwrapper {
+    width:50%;
+}
 .smallPics {
-    /* display:flex;
-    flex-wrap:wrap; */
-    width:500px;
-    height:500px;
+    display:flex;
+    flex-wrap:wrap;
+    width:50%;
+    height:100%;
     object-fit: cover;
 }
 
 .smallpic {
-    width:240px;
-    height:245px;
-    padding:5px 5px 0px;
+    width:50%;
+    height:50%;
+    /* padding:5px 5px 0px; */
     object-fit: cover;
 }
 

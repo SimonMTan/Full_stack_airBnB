@@ -11,7 +11,7 @@ const Account  = () => {
     const allspots = useSelector((state) =>state.allSpots)
     const x = allspots.allSpots
     const y = Object.values(x)
-    const imgs = y.filter(img => img.ownerId === sessionUser.id)
+    const imgs = y?.filter(img => img?.ownerId === sessionUser?.id)
 
     console.log('sessionUser',sessionUser)
     // console.log('allspots', allspots)
@@ -29,6 +29,7 @@ const Account  = () => {
         dispatch(getallspots())
     },[dispatch])
 
+    if(!sessionUser){return}
     return (
         <div>
             <h1 className="account-title">
@@ -42,12 +43,12 @@ const Account  = () => {
                         <div className="account-button-container">
                             <button className="account-button">
                                 <NavLink to={`edit/spots/${spot?.id}`}>
-                                    Edit
+                                    <div className="acc-button-detail">Edit</div>
                                 </NavLink>
                             </button>
                             <button className="account-button">
                                 <NavLink to={`delete/spots/${spot?.id}`}>
-                                    Delete
+                                    <div className="acc-button-detail">Delete</div>
                                 </NavLink>
                             </button>
                         </div>

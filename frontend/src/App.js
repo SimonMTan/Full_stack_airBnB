@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
-import SignupFormPage from "./components/SignupFormPage";
 import Home from './components/Home'
 import Getspot from './components/Spot'
 import Navigation from "./components/Navigation";
@@ -11,6 +10,8 @@ import Account from "./components/Account";
 import Editspot from "./components/Editspot";
 import Deletespot from './components/Deletespot'
 import Createreview from "./components/Review/Createreview_spot";
+import SignupFormPage from "./components/SignupFormPage";
+import LoginForm from "./components/LoginFormModal/LoginForm";
 
 import * as sessionActions from "./store/session";
 

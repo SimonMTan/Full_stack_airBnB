@@ -1,12 +1,12 @@
 .account-title{
     font-size:50px;
-
 }
 
 .spot-detail{
     display:flex;
     flex-direction: row;
-    
+    flex-wrap: wrap;
+    align-content: space-between;
 }
 
 .account-pic{
@@ -24,8 +24,16 @@
 
 .account-button {
     background-color:#FF385C;
-    color: white;
+    color:inherit;
     text-decoration: none;
+
+}
+
+.acc-button-detail{
+    color:white;
+    text-decoration: none;
+    /* margin-bottom: 10px; */
+    /* padding-bottom: 10px; */
 }
 
 a:visited , a:link{

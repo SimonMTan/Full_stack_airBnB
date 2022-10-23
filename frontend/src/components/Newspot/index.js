@@ -35,34 +35,38 @@ const Newspot = () => {
         if (!lng) err.push('Please provide correct longitude')
         if (!description) err.push('Please provide description')
         if (!price || price <= 0) err.push('Please provide valid price')
+        if (!img || (!img.endsWith('.png') && !img.endsWith('.jpg'))) err.push('Please provide valid image link with .png/.jpg')
         setErrors(err)
-    }, [address, city, state, country, lat, lng, name, description, price])
+    }, [address, city, state, country, lat, lng, name, description, price, img])
 
     // useEffect(() =>{
     //     dispatch(createspot({city,state,country,lat,lng,name,description,price}))
     // },[dispatch])
 
     // if (!sessionUser) return Error('need to signup or login')
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         setErrors([]);
-        const data = await dispatch(createspot({address, city, state, country, lat, lng, name, description, price,img }))
-            if (data.errors) {
-                setErrors(data.errors)
-                return
-            };
-            history.push('/account')
-          }
-        return (
-            <div className="createspotform">
+        if (errors.length > 0) { return }
+        const data = await dispatch(createspot({ address, city, state, country, lat, lng, name, description, price, img }))
+        if (data.errors) {
+            setErrors(data.errors)
+            return
+        };
+        history.push('/account')
+    }
+    return (
+        <div className="createspotform">
             <h1 className="title">Let create a wonderful home for visitor</h1>
             <div className='spotform'>
                 <form onSubmit={handleSubmit}>
-                    <div className="error-createspot">
-                        {errors.map((error, idx) => (
-                            <div key={idx}>·{error}</div>
-                        ))}
-                    </div>
+                    {errors.length > 0 && (
+                        <div className="error-createspot">
+                            {errors.map((error, idx) => (
+                                <div key={idx}>·{error}</div>
+                            ))}
+                        </div>
+                    )}
                     <label >
                         <div className="info">Name</div>
                         <input
@@ -176,8 +180,8 @@ const Newspot = () => {
                     <button className='submit' type="submit">Submit</button>
                 </form>
             </div>
-            </div>
-        )
-    }
+        </div>
+    )
+}
 
-    export default Newspot
+export default Newspot

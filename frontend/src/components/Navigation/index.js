@@ -1,15 +1,17 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import LoginFormModal from '../LoginFormModal';
-import SignupFormModal from '../SignupFormPage';
 import React, { useState, useEffect } from "react";
-import './index.css';
+import { Modal } from '../../context/Modal';
+import LoginForm from '../LoginFormModal/LoginForm.js'
+import SignupFormPage from '../SignupFormPage/SignupForm.js'
+import './index_sec.css';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
-
+  const [showModal, setShowModal] = useState(false);
+  const [showSignupModal,setshowSignupModal] = useState(false)
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
@@ -36,37 +38,45 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <div>
-          <div className='navbar-right-left'>
-            <NavLink to={'/spots/createspot'}>become a host</NavLink>
-          </div>
-          <button onClick={openMenu} className='navbar-right'>
+
+          <button onClick={openMenu} className='navbar-right-new'>
             <i class="fa-solid fa-bars"></i>
             <i class="fa-regular fa-user"></i>
           </button>
+
           {showMenu && (
-          <div className="profile-dropdown">
-            <div className='login'>
-              <LoginFormModal />
-            </div>
-            <div className='signup'>
-              <SignupFormModal />
-            </div>
+          <div className="profile-dropdown-new">
+            <div className='login-new' onClick={() => (setShowModal(true))}>Log In</div>
+            <div className='signup-new' onClick={() => (setshowSignupModal(true))}>Signup!</div>
           </div>
-           )}
+          )}
           </div>
+
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <LoginForm />
+        </Modal>
+      )}
+
+      {showSignupModal && (
+        <Modal onClose={() => setshowSignupModal(false)}>
+          <SignupFormPage />
+        </Modal>
+
+      )}
       </>
     );
   }
 
   return (
     <>
-      <div className='nav-wrapper'>
+      <div className='nav-wrapper-new'>
         <NavLink exact to="/">
             <img className='logo'src={'https://drive.google.com/uc?export=view&id=12nkWGXtZZWaTe55y8KCxkm6X7KwDnPJB'}></img>
         </NavLink>
         {isLoaded && sessionLinks}
       </div>
-    <div className='emptyline'></div>
+    <div className='emptyline-new'></div>
     </>
   );
 }

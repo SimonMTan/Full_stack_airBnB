@@ -10,13 +10,16 @@
 .display {
     border: 3px solid;
     display:block;
-    padding: 8px 5px;
+    padding: 5px 5px;
     margin: 10px 10px;
     width:90%;
 }
 
 .loginButton {
     background-color: #FF385C;
-    margin: 15px 5px;
-    width:90%;
+    margin-left: 25%;
+    margin-bottom: 30px;
+    margin-top: 15px;
+    /* align-items: center; */
+    width:50%;
 }

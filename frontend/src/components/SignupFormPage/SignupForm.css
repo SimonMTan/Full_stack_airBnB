@@ -1,0 +1,25 @@
+.signupform-wrapper{
+    background-color: #f2f2f2;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width:100%;
+}
+.signup-display{
+    border: 3px solid;
+    display:block;
+    padding: 5px 5px;
+    margin: 10px 10px;
+    width:90%;
+}
+
+.signupButton{
+    background-color: #FF385C;
+    margin-left: 25%;
+    width:50%;
+}
+
+.thankyou{
+    color:#FF385C;
+    margin:auto;
+}

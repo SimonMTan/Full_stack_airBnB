@@ -39,16 +39,17 @@ const Getspot = () => {
                 · <u>{spotDetail.city},{spotDetail.state},{spotDetail.country}</u>
             </span>
             <div className="pic-wrapper">
-                <div >
+                <div className="bigpicwrapper">
                     <img className="bigPic" src={bigPic[0]?.url} alt={bigPic[0]?.id} key={bigPic[0]?.id}/>
                 </div>
-
+                {smallPic?.length > 0 && (
                  <div className="smallPics">
                     <img className='smallpic left-top' src={smallPic[0]?.url}/>
                     <img className='smallpic right-top' src={smallPic[1]?.url}/>
                     <img className='smallpic left-bot' src={smallPic[2]?.url}/>
                     <img className='smallpic right-bot' src={smallPic[3]?.url}/>
                 </div>
+                )}
             </div>
             <div className="middle">
                 <div className="middle-left">
