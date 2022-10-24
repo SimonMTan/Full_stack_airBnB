@@ -19,6 +19,9 @@ Please see below links to project Wiki:
 * Redux
 * hosted by HEROKU
 
+## HomePage
+<img src=https://imgur.com/34ZNE7E.png >
+
 ## Contact
 <img src=https://i.imgur.com/2ffGJqj.png width=20> [LinkedIn](https://www.linkedin.com/in/simonmtan/)
 <img src=https://i.imgur.com/w9xwrCT.png width=20>[GitHub](https://github.com/SimonMTan)
