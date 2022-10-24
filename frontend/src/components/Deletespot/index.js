@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { deletespot } from "../../store/spots";
-
+import './delete.css'
 const Deletespot = () =>{
     const dispatch = useDispatch()
     const {spotId} = useParams()
@@ -16,7 +16,7 @@ const Deletespot = () =>{
         <h1>Successfully Deleted</h1>
         <span >
             <NavLink to={'/account'}>
-                <u>return to Account</u>
+                <div className="returntoaccount"><u>return to Account</u></div>
             </NavLink>
         </span>
     </div>)
