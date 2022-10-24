@@ -43,3 +43,12 @@
     border-radius: 15px;
     cursor:pointer;
 }
+
+.error2{
+    color:#FF385C;
+    padding:2px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin:2px;
+}

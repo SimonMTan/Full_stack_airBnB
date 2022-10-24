@@ -63,7 +63,7 @@ const Newspot = () => {
                     {errors.length > 0 && (
                         <div className="error-createspot">
                             {errors.map((error, idx) => (
-                                <div key={idx}>·{error}</div>
+                                <div className="error-createspot" key={idx}>·{error}</div>
                             ))}
                         </div>
                     )}

@@ -39,12 +39,15 @@ function LoginForm() {
   return (
     <div className="logincontainer">
       <h1>Welcome to i_BnB </h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
+
+        <div>
           {errors?.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <div className="error2">
+            <div key={idx}>{error}</div>
+            </div>
           ))}
-        </ul>
+        </div>
+        <form onSubmit={handleSubmit}>
         <label>
           Username or Email
           <input
