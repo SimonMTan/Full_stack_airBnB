@@ -22,4 +22,4 @@ Please see below links to project Wiki:
 ## Contact
 <img src=https://i.imgur.com/2ffGJqj.png width=20> [LinkedIn](https://www.linkedin.com/in/simonmtan/)
 <img src=https://i.imgur.com/w9xwrCT.png width=20>[GitHub](https://github.com/SimonMTan)
-[📧] @ contact.simontan@gmail.com
+📧 @ contact.simontan@gmail.com
