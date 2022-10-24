@@ -82,12 +82,12 @@
 }
 
 .spot-desc{
-    font-size: 18px;
-    padding:30px 0px;
+    font-size: 16px;
+    padding:20px 0px;
     border-style: none none solid;
     border-width: 1px;
     border-color: rgba(0, 0, 0, .20);
-    height:54px;
+    height:80px;
     width:80%;
 }
 

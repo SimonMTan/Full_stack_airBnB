@@ -25,9 +25,16 @@ function SignupFormPage() {
         .catch(async (res) => {
           const data = await res.json();
             if (data && data.errors){
-              let valerror = []
-              valerror.push(data.errors.email)
-              setErrors(valerror)
+              if(Array.isArray(data.errors)){
+                let valerror = []
+                data.errors.forEach(error =>
+                valerror.push(error))
+                setErrors(valerror)
+              }else{
+                let valerror = []
+                valerror.push(data.errors.email)
+                setErrors(valerror)
+              }
             }
           });
     }

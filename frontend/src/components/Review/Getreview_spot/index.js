@@ -38,7 +38,7 @@ const Getreview = ({}) =>{
                 </div>
                 )}
             </div>
-            <div>
+            <div className="reviewbox-wrapper">
                 {arrayreviews?.map(review => (
                 <div className="reviewbox">
                     <div className="review-name">{review?.User?.firstName} {review?.User?.lastName}</div>
