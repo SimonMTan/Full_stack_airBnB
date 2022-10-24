@@ -32,10 +32,14 @@ HTTPS: https://github.com/SimonMTan/i_BnB.git
 ```
 npm install
 ```
-4. cd backend and frontend folders.
+3. cd in the terminal to backend and frontend folders.
+```
+cd example/backend or cd example/frontend
+```
+4. npm start to both terminal to start locally
 ```
 npm start
-
+```
 
 
 ## Contact
