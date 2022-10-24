@@ -34,8 +34,8 @@ const Newspot = () => {
         if (!lat || !((lat>=0) || (lat <0)) || ( lat < -90) || (lat > 90)) err.push('Please provide latitude between -90 and 90')
         if (!lng || !((lng>=0) || (lng <0)) || ( lng < -180) || (lng > 180)) err.push('Please provide longitude  between -180 and 180')
         if (!description || description.length >255) err.push('Please provide description with less than 255 chars')
-        if (!price || !(price > 0)) err.push('Please provide valid price')
-        if (!img || (!img.endsWith('.png') && !img.endsWith('.jpg'))) err.push('Please provide valid image link with .png/.jpg')
+        if (!price || !(price > 0) || (price>100000000000)) err.push('Please provide valid price')
+        if (!img || (!img.endsWith('.png') && !img.endsWith('.jpg')) || (img.length>255)) err.push('Please provide valid image link with .png/.jpg')
         setErrors(err)
     }, [address, city, state, country, lat, lng, name, description, price, img])
 

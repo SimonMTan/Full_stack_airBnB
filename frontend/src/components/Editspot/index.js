@@ -38,7 +38,7 @@ const Editspot = () => {
         if (!lng || !((lng>=0) || (lng <0)) || ( lng < -180) || (lng > 180)) err.push('Please provide correct longitude')
         if (!name || name.length>15) err.push('Please provide name with less than 15 chars')
         if (!description || description.length>255) err.push('Please provide descriptionwith less than 255 chars')
-        if (!price || !(price > 0)) err.push('Please provide valid price')
+        if (!price || !(price > 0) || (price >100000000000)) err.push('Please provide valid price')
         setErrors(err)
     }, [address, city, state, country, lat, lng, name, description, price])
 
