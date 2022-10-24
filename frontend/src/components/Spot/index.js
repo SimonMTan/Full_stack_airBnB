@@ -50,6 +50,15 @@ const Getspot = () => {
                     <img className='smallpic right-bot' src={smallPic[3]?.url}/>
                 </div>
                 )}
+                {smallPic?.length === 0 && (
+                    <div className="smallPics">
+                       <img className='smallpic left-top' src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWYyQeO7Ku3ECYBURBAMPVJ-GlzQq7dwlFxAz9VMU&s'}/>
+                       <img className='smallpic right-top' src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWYyQeO7Ku3ECYBURBAMPVJ-GlzQq7dwlFxAz9VMU&s'}/>
+                       <img className='smallpic left-bot' src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWYyQeO7Ku3ECYBURBAMPVJ-GlzQq7dwlFxAz9VMU&s'}/>
+                       <img className='smallpic right-bot' src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWYyQeO7Ku3ECYBURBAMPVJ-GlzQq7dwlFxAz9VMU&s'}/>
+                   </div>
+                )}
+
             </div>
             <div className="middle">
                 <div className="middle-left">

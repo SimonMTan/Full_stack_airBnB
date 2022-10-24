@@ -195,3 +195,11 @@
     font-size: 25px;
     margin-bottom: 30px;
 }
+
+@media only screen and (min-width: 1200px) {
+    .smallpic {
+        height:45%;
+        width:48%;
+        margin:1%;
+    }
+  }
