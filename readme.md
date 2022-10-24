@@ -22,6 +22,22 @@ Please see below links to project Wiki:
 ## HomePage
 <img src=https://imgur.com/34ZNE7E.png >
 
+## To upload Locally
+1. Clone repository.
+```
+SSH: git@github.com:SimonMTan/i_BnB.git
+HTTPS: https://github.com/SimonMTan/i_BnB.git
+```
+2. Install dependencies.
+```
+npm install
+```
+4. cd backend and frontend folders.
+```
+npm start
+
+
+
 ## Contact
 <img src=https://i.imgur.com/2ffGJqj.png width=20> [LinkedIn](https://www.linkedin.com/in/simonmtan/)
 <img src=https://i.imgur.com/w9xwrCT.png width=20>[GitHub](https://github.com/SimonMTan)
