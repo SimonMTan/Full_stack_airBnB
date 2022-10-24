@@ -1,6 +1,6 @@
 # `I_BnB`
 
-<img src=<blockquote class="imgur-embed-pub" lang="en" data-id="a/lJZrxGb" data-context="false" ><a href="//imgur.com/a/lJZrxGb"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>>
+<img https://imgur.com/Z83GBCe.png>
 
 [I_BnB]) is a full stack application clone of [AirBnB](https://airbnb.com). I_BnB can be use to rent a spot for your getaway/Adventures/vacation away from your busy life. You can host a spot, rent a spot, leave reviews to let other knows what your experiences like. It is best used for toruism activities.
 
