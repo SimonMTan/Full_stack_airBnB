@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { deletespot } from "../../store/spots";
-import './delete.css'
+import './deletespot.css';
 const Deletespot = () =>{
     const dispatch = useDispatch()
     const {spotId} = useParams()
