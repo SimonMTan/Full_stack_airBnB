@@ -32,7 +32,7 @@ const Newspot = () => {
         if (!state) err.push('Please provide state with less than 15 chars')
         if (!country) err.push('Please provide country with less than 15 chars')
         if (!lat || !((lat>=0) || (lat <0)) || ( lat < -90) || (lat > 90)) err.push('Please provide latitude between -90 and 90')
-        if (!lng || !((lng>=0) || (lng <0)) || ( lng < -180) || (lng > 180)) err.push('Please provide correct  between -180 and 180')
+        if (!lng || !((lng>=0) || (lng <0)) || ( lng < -180) || (lng > 180)) err.push('Please provide longitude  between -180 and 180')
         if (!description || description.length >255) err.push('Please provide description with less than 255 chars')
         if (!price || !(price > 0)) err.push('Please provide valid price')
         if (!img || (!img.endsWith('.png') && !img.endsWith('.jpg'))) err.push('Please provide valid image link with .png/.jpg')

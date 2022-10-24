@@ -4,21 +4,22 @@ import * as sessionActions from '../../store/session';
 import { NavLink, Redirect, useHistory} from "react-router-dom";
 import './navigation.css';
 
-function ProfileButton({ user }) {
+function ProfileButton({ user , setShowModal ,setshowSignupModal}) {
   const dispatch = useDispatch();
-  const [showMenux, setShowMenu] = useState(false);
+  const [showMenux, setShowMenux] = useState(false);
   const history = useHistory()
 
   const toggleMenu = () => {
     // if (showMenu) return;
-    setShowMenu(!showMenux);
+    setShowMenux(!showMenux);
   };
 
   useEffect(() => {
     if (!showMenux) return;
 
     const closeMenu = () => {
-      setShowMenu(false);
+      setShowMenux(false);
+
     };
 
     document.addEventListener('click', closeMenu);
@@ -29,7 +30,10 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    setShowModal(false)
+    setshowSignupModal(false)
     history.push('/')
+
   };
 
   return (

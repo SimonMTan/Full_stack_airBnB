@@ -19,20 +19,30 @@ function Navigation({ isLoaded }){
 
   useEffect(() => {
     if (!showMenu) return;
+    // if (!showModal) return;
+    // if (!showSignupModal) return
 
     const closeMenu = () => {
       setShowMenu(false);
+      // setShowModal(false)
+      // setshowSignupModal(false)
     };
 
     document.addEventListener('click', closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
+    return () => document.removeEventListener("click", closeMenu)
+
   }, [showMenu]);
+
+  // useEffect(() => {
+  //   console.log('this is showModal >>>',showModal)
+  //   console.log('this is showSignModal >>>',showSignupModal)
+  // },[showModal,showSignupModal])
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      <ProfileButton user={sessionUser} setShowModal={setShowModal} setshowSignupModal={setshowSignupModal} />
     );
   } else {
     sessionLinks = (
