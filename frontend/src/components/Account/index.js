@@ -1,41 +1,45 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
-import { getallspots, getspotdetail } from "../../store/spots";
+import { getallspots } from "../../store/spots";
 import { NavLink } from "react-router-dom";
 import './Account.css'
 import { getbookingforuser } from "../../store/booking";
+import { deletebooking } from "../../store/booking";
 
 const Account  = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
     const allspots = useSelector((state) =>state.allSpots)
+    const userbooking = useSelector((state) =>state.booking)
+    // console.log(userbooking,' userbooking')
+    const data = Object.values(userbooking)
+    // console.log(data,'this is data?')
     const x = allspots.allSpots
     const y = Object.values(x)
     const imgs = y?.filter(img => img?.ownerId === sessionUser?.id)
-    console.log('sessionUser',sessionUser)
+    // const [booking,setBooking] = useState()
 
-    const [isloaded, setIsloaded] = useState(0)
-    const [booking,setBooking] = useState()
     useEffect(() => {
         dispatch(sessionActions.restoreUser())
-        setIsloaded(1)
     },[dispatch])
 
-    useEffect(async() =>{
+    useEffect(() =>{
         dispatch(getallspots())
-        const data = await dispatch(getbookingforuser())
-        setBooking(data)
+        dispatch(getbookingforuser())
     },[dispatch])
-     console.log(booking, 'this is booking')
+
+
     if(!sessionUser){return}
+
     return (
         <div>
             <h1 className="account-title">
                 Welcome Back!
             </h1>
             {/* <div> */}
-            <div className="spot-detail">Your spots
+            <div className="title123">Spots</div>
+            <div className="spot-detail">
                 {imgs?.map((spot) => (
                     <span className="ind-spot-detail-wrapper" key={spot?.id}>
                         <img className='account-pic' src={spot?.previewImage[0]}></img>
@@ -55,12 +59,16 @@ const Account  = () => {
 
                 ))}
             </div>
-            <div>Booking
-                    {booking?.map((booked) => (<div key={booked?.id}>
-                        <div>{booked.Spot.name}</div>
-                        <div>Booking Start Date{booked.startDate}</div>
-                        <div>Booking End Date{booked.endDate}</div>
-                    </div>))}
+            <div className="title123">Booking</div>
+            <div className='bookingwrapper'>
+                    {data?.map((booked) => (
+                    <div key={booked?.id}>
+                        <div className="bookingdetail">{booked?.Spot?.name}</div>
+                        <div className="bookingdetail">Booking Start Date:&nbsp;{booked.startDate}</div>
+                        <div className="bookingdetail">Booking End Date:&nbsp;{booked.endDate}</div>
+                        <button className='yesbutton' onClick={async() => await dispatch(deletebooking(booked.id)).then(async() =>await dispatch(getbookingforuser()))}> Delete</button>
+                    </div>
+                    ))}
             </div>
         </div>
     )

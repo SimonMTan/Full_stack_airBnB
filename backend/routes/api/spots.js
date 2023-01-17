@@ -423,7 +423,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
       }
     ]
   }})
-   console.log(checkBooking)
+  //  console.log(checkBooking)
   if(checkBooking){
     res.status(403).json({
       "message": "Sorry, this spot is already booked for the specified dates",
@@ -499,7 +499,7 @@ router.post('/:spotId/reviews', validatorReview, async (req, res, next) => {
 
 router.get(`/search/:searchterm`, async(req,res) => {
   const {searchterm} = req.params
-  console.log(searchterm)
+  // console.log(searchterm)
   const findspot = await Spot.findAll({where:{
     [Op.or]: [
       {

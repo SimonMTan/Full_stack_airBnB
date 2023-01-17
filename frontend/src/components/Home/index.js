@@ -12,15 +12,15 @@ const Getallspots = () => {
     const arrspots = Object.values(allspots.allSpots)
     // console.log(' should be array allSpots',arrspots )
 
-    useEffect(() =>{
-        dispatch(getallspots())
+    useEffect(() => {
+    dispatch(getallspots())
     },[dispatch])
 
     return (
         <>
          <div className="spot-container">
                 {arrspots.map(spot => (
-                    <div className="ind-spot-wrapper">
+                    <div className="ind-spot-wrapper" key={spot.id}>
                     <NavLink to={`/spots/${spot.id}`}>
                         <div className="ind-spot" >
                             <img src={spot?.previewImage[0]} alt ={spot.previewImage} className='ind-spot-img'/>

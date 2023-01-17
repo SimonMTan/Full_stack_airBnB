@@ -6,7 +6,7 @@ import './index.css'
 
 const Createreview = () => {
     const { spotId } = useParams()
-    console.log(spotId)
+    // console.log(spotId)
     const dispatch = useDispatch();
     const history = useHistory()
     const [review, setReview] = useState('')

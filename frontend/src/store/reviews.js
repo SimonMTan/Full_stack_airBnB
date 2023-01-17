@@ -29,11 +29,11 @@ const delete_review_spot = (info) =>{
 //...Thunk action...
 export const getreview = (spotId) => async dispatch => {
     const response = await fetch(`/api/spots/${spotId}/reviews`)
-    console.log(response,'fetch return')
+    // console.log(response,'fetch return')
     if(response.ok){
         let data = await response.json()
         const newdata = data.Reviews
-        console.log(newdata)
+        // console.log(newdata)
         dispatch(get_review_spot(newdata))
         return newdata
     }
@@ -70,7 +70,7 @@ const reviewReducer = (state = initState,action) =>{
     switch(action.type){
         case GET_REVIEW_SPOT:
             const allreview = {}
-            console.log('payload',action.payload)
+            // console.log('payload',action.payload)
             action.payload.forEach((review) => {
                 allreview[review.id] = review
             })

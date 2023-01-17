@@ -7,7 +7,7 @@ import Calendar from 'react-calendar';
 
 import { getspotdetail } from "../../store/spots";
 import { getbooking } from "../../store/booking";
-import { clear_spot } from "../../store/spots";
+// import { clear_spot } from "../../store/spots";
 import { createbooking } from "../../store/booking";
 
 import Getreview from "../Review/Getreview_spot";
@@ -22,10 +22,10 @@ const Getspot = () => {
     const bookinglist = useSelector((state) => state.booking)
     const bookingarray = Object.values(bookinglist)
 
-    let today = new Date()
-    let tomorrow =  new Date()
-    tomorrow.setDate(today.getDate() + 1)
-    const [date, setDates] = useState(tomorrow)
+    // let today = new Date()
+    // let tomorrow =  new Date()
+    // tomorrow.setDate(today.getDate() + 1)
+    const [date, setDates] = useState()
     const [startDate,setStartDate] = useState()
     const [endDate,setEndDate] = useState()
     const [dayDiff,setDayDiff] = useState()
@@ -48,10 +48,10 @@ const Getspot = () => {
 
 
     useEffect(() =>{
-    if(date.length === 1){
+    if(date?.length === 1){
         setStartDate(date[0].toDateString())
     }
-    if(date.length === 2){
+    if(date?.length === 2){
         setStartDate(date[0].toDateString())
         setEndDate(date[1].toDateString())
         setDayDiff(Math.floor((date[1]-date[0])/(24 * 60 * 60 * 1000)))
@@ -64,18 +64,18 @@ const Getspot = () => {
         // console.log(user.id,'hello', spotDetail?.ownerId,'are they the same?')
         // if(user.id == spotDetail.ownerId) err.push("You owned this place")
         if(user){
-            if(dayDiff == 0) err.push('1 night minimum')
-            if(dayDiff > 7) err.push('7 nights maximum')
+            if(dayDiff == 0) err.push(' 1 night minimum')
+            if(dayDiff > 7) err.push(' 7 nights maximum')
         }
         setErrors(err)
     },[user,dayDiff])
 
     useEffect(() =>{
-        dispatch(getspotdetail(spotId))
-        dispatch(getbooking(spotId))
+        dispatch(getspotdetail(+spotId))
+        dispatch(getbooking(+spotId))
         // console.log(date,'this is date')
         // console.log(Math.floor((date[1]-date[0])/(24 * 60 * 60 * 1000)))
-        return () => dispatch(clear_spot())
+        // return () => dispatch(clear_spot())
     },[dispatch,date])
     //this stop from preloading the material on the page and let page hit use-effect
     if(Object.values(allspots.singleSpot).length == 1)return null
@@ -84,17 +84,17 @@ const Getspot = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        console.log('step1')
+        // console.log('step1')
         if(errors.length > 0){
             setShowError(true)
             return
         }
-        console.log('step2')
-        let info = {spotId,userId:user.id,startDate,endDate}
-        console.log(info, 'this is info from frontend')
+        // console.log('step2')
+        let info = {spotId:+spotId,userId:user.id,startDate,endDate}
+        // console.log(info, 'this is info from frontend')
         const data = await dispatch(createbooking(info))
         alert(`Booked from ${data.startDate} to ${data.endDate} for ${Math.floor((new Date(data.startDate)-new Date(data.endDate))/(24 * 60 * 60 * 1000))} nights`)
-        await dispatch(getbooking(spotId))
+        await dispatch(getbooking(+spotId))
         history.push(`/account`)
         return
     }
@@ -173,25 +173,27 @@ const Getspot = () => {
                                 value={date}
                                 selectRange={true}
                                 tileDisabled={tileDisabled}
-                                defaultValue={null}
+                                // defaultValue={null}
                                 />
                             </div>
-                            {date.length > 0 ? (
+                            {/* {date.length > 0 && (
                                 <p className='text-center'>
                                 <span className='bold'>Start:</span>{' '}
                                 {date[0].toDateString()}
-                                &nbsp;|&nbsp;
+                                &nbsp;&nbsp;
                                 <span className='bold'>End:</span> {date[1].toDateString()}
                                 </p>
-                            ) : (
-                                <p className='text-center'>
-                                <span className='bold'>Default selected date:</span>{' '}
-                                {date.toDateString()}
-                                </p>
-                            )}
+                            )
+                            // : (
+                            //     <p className='text-center'>
+                            //     <span className='bold'>Default selected date:</span>{' '}
+                            //     {date.toDateString()}
+                            //     </p>
+                            // )
+                            } */}
                         </div>
                         {showError && errors.length > 0 && (
-                            <div className="">Error:
+                            <div className="text-center error_lines">Error:&nbsp;
                                 {errors.map((error, idx) => (
                                     <div className="" key={idx}>{error}</div>
                                 ))}
@@ -201,7 +203,7 @@ const Getspot = () => {
                             <button type='submit' className="reserve_button1">Reserve</button>
                         </div>
                     </form>
-                    {dayDiff > 1 ?
+                    {dayDiff > 0 ?
                     <div>
                     <div className='middle-rightinfo'><div>${`${spotDetail.price} `} x {dayDiff} nights</div> <div>${spotDetail.price*dayDiff}</div></div>
                     <div className='middle-rightinfo'><div>Cleaning fee</div> <div>$20</div></div>

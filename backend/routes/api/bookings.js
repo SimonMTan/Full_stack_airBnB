@@ -25,11 +25,11 @@ router.get('/current',requireAuth,async(req,res,next) =>{
                 },
             attributes: ['url']
           })
-          console.log(sptImg)
+          // console.log(sptImg)
         //   console.log(sptImg.length)
           if(sptImg.length === 1){
             urlJSON.Spot.previewImage = sptImg[0].url
-            console.log(sptImg[0].url)
+            // console.log(sptImg[0].url)
             }else if (sptImg.length > 1){
               let img = []
               for(let sptimg of sptimg)
@@ -47,8 +47,10 @@ router.get('/current',requireAuth,async(req,res,next) =>{
 //Get all booking by spotId
 router.get('/:bookingId',async(req,res,next) =>{
   const {bookingId} = req.params
+  // console.log(bookingId)
   const allbookingbyspotId = await Booking.findAll({where:{spotId:bookingId}})
   // const restriction
+  // console.log(allbookingbyspotId, 'this is backend')
   res.json({Bookings:allbookingbyspotId})
 })
 
@@ -58,7 +60,7 @@ router.post('/:bookingId',async(req,res,next) =>{
   const {spotId,userId,startDate,endDate} = req.body
   // const userId = req.user
   // console.log(userId,' this is user id from backend')
-
+  // console.log(spotId,userId,startDate,endDate, 'this is in create by spotid backend')
   if(!spotId || !userId || !startDate || !endDate){
     res.status(400).json({"message":"One of the requirement field is missing"})
   }
@@ -152,9 +154,9 @@ router.delete('/:bookingId',requireAuth,async(req,res) =>{
 
     await validateBooking.destroy()
     res.json({
-        "deleted":validateBooking,
-        "message": "Successfully deleted",
-        "statusCode": 200
+        deletedId:bookingId,
+        message:"Successfully deleted",
+        statusCode: 200
       })
 })
 module.exports = router;

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Redirect, useHistory } from "react-router-dom";
-import { getreview , deletereview } from "../../../store/reviews";
+import { NavLink, useHistory } from "react-router-dom";
+import { getreview } from "../../../store/reviews";
 import {useParams} from 'react-router-dom'
-import { getspotdetail } from "../../../store/spots";
+// import { getspotdetail } from "../../../store/spots";
 import Deletereview from "../Deletereview_spot";
 import './getreview.css'
 

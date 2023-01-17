@@ -51,14 +51,14 @@ function Navigation({ isLoaded }){
     if(searchterm){
       async function getmydata (){
       const result = await dispatch(searchthunk(searchterm))
-      console.log(result, 'this is result')
+      // console.log(result, 'this is result')
       // console.log(searchterm)
       if(result){
       // let array = result.search_result
       setSearchBox(result)
       setSearchContainer(true)
-      console.log(result , 'this is the result')
-      console.log(searchbox,"<<<<<this is searchbox")
+      // console.log(result , 'this is the result')
+      // console.log(searchbox,"<<<<<this is searchbox")
       return
         }
       }

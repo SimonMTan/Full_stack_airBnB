@@ -4,6 +4,7 @@ const GET_BOOKING = 'booking/getbooking'
 const CREATE_BOOKING = 'booking/createbooking'
 const EDIT_BOOKING = 'booking/editbooking'
 const DELETE_BOOKING = 'booking/deletebooking'
+const GET_USER_BOOKING = 'booking/getuserbooking'
 
 
 const get_booking = (info) => {
@@ -34,13 +35,21 @@ const delete_booking = () => {
 
 }
 
+const get_user_booking = (info) => {
+    return {
+        type:GET_USER_BOOKING,
+        payload:info
+    }
+}
+
 // ... THUNK action ...
 export const getbooking = (bookingId) => async dispatch =>{
     const response = await fetch(`/api/bookings/${bookingId}`)
     if(response.ok){
         const data = await response.json()
-        console.log(data, 'getbooking thunk')
+        // console.log(data, 'getbooking thunk')
         const newData = data.Bookings
+        // console.log(newData, typeof newData,'THUNK1211')
         dispatch(get_booking(newData))
         return data
     }
@@ -51,13 +60,14 @@ export const getbookingforuser = () => async dispatch =>{
     if(response.ok){
         const data = await response.json()
         const dataarr = data.Bookings
-        console.log(dataarr, 'THUNKTHUNK')
+        // console.log(dataarr, typeof dataarr, 'THUNKTHUNK')
+        dispatch(get_user_booking(dataarr))
         return dataarr
     }
 }
 export const createbooking = (info) => async dispatch =>{
     const {spotId,userId,startDate,endDate} = info
-    console.log(info, 'this is info inside thunk')
+    // console.log(info, 'this is info inside thunk')
     const response = await csrfFetch(`/api/bookings/${spotId}`,{
         method:'POST',
         body:JSON.stringify({
@@ -66,7 +76,7 @@ export const createbooking = (info) => async dispatch =>{
     })
     if(response.ok){
         const data = await response.json()
-        console.log('this is the response ', data)
+        // console.log('this is the response ', data)
         dispatch(create_booking(data))
         return data
     }
@@ -92,7 +102,7 @@ export const deletebooking = (spotId) => async dispatch=> {
     })
     if(response.ok){
         let data = await response.json()
-        const deletedata = data.deleted
+        const deletedata = data.deletedId
         dispatch(delete_booking(deletedata))
         return
         // let data = await response.json()
@@ -102,22 +112,31 @@ export const deletebooking = (spotId) => async dispatch=> {
 
 const initState = {}
 const bookingReducer = (state = initState,action) =>{
-    let newState = {...state}
+    let newState
     switch(action.type){
         case GET_BOOKING:
-        console.log(action.payload, 'actionpayload reducer')
-        action.payload.forEach(booking => newState[booking.id] = booking)
-        return newState;
+            newState = {}
+            // console.log(action.payload, 'actionpayload reducer')
+            action.payload.forEach(booking => newState[booking.id] = booking)
+            return newState;
+
+        case GET_USER_BOOKING:
+            newState = {}
+            action.payload.forEach(booking => newState[booking.id] = booking)
+            return newState;
 
         case CREATE_BOOKING:
-        newState[action.payload.id] = action.payload
+            newState = {...state, [action.payload.id]: action.payload}
+            return newState
 
         case EDIT_BOOKING:
-        newState[action.payload.id] = action.payload
+            newState = {...state, [action.payload.id]: action.payload}
+            return newState
 
         case DELETE_BOOKING:
-        delete newState[action.payload.id]
-        return newState
+            newState = {...state}
+            delete newState[action.payload]
+            return newState
 
         default:
             return state

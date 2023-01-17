@@ -27,11 +27,11 @@ for (let url of review){
             },
         attributes: ['url']
       })
-      console.log(sptImg)
+    //   console.log(sptImg)
     //   console.log(sptImg.length)
       if(sptImg.length === 1){
         urlJSON.Spot.previewImage = sptImg[0].url
-        console.log(sptImg[0].url)
+        // console.log(sptImg[0].url)
         }else if (sptImg.length > 1){
           let img = []
           for(let sptimg of sptimg)

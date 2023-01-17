@@ -217,11 +217,19 @@
     font-size:12px;
 }
 
+
+
 .middle-rightinfo {
     font-size:15px;
     margin:15px 20px;
     justify-content: space-between;
     display:flex
+}
+.error_lines{
+    display:flex;
+    margin-left:20px;
+    margin-top:5px;
+    margin-bottom:5px;
 }
 
 .reserve_button{

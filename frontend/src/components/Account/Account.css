@@ -7,7 +7,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-content: space-between;
-
+    font-size: 24px;
 }
 
 .spot-desc{
@@ -17,7 +17,7 @@
 .account-pic{
     width:100%;
     height:100%;
-    margin: 50px 0px;
+    margin: 30px 0px;
 }
 
 .account-button-container{
@@ -31,6 +31,11 @@
     background-color:#FF385C;
     color:inherit;
     text-decoration: none;
+    justify-content:center;
+    align-items: center;
+    margin-top: 3px;
+    margin-bottom: 3px;
+
 
 }
 
@@ -39,7 +44,9 @@
     text-decoration: none;
     /* margin-bottom: 10px; */
     /* padding-bottom: 10px; */
-    margin-bottom:10px;
+    /* margin-bottom:10px; */
+    margin-top:2px;
+    margin-bottom:2px;
 }
 
 a:visited , a:link{
@@ -51,4 +58,29 @@ a:visited , a:link{
     height:fit-content;
     margin:10px 1%;
 
+}
+
+.title123{
+    font-size: 30px;
+    margin-left:5px;
+}
+
+.bookingwrapper{
+    margin:0px 1%;
+}
+
+.bookingdetail{
+    margin: 3px 0px;
+}
+.yesbutton{
+    background-color: #FF385C;
+    color:white;
+    text-decoration: none;
+    border:1px solid black ;
+}
+.yesbutton:hover{
+    cursor: pointer;
+    background-color: white;
+    color: #FF385C;
+    border:1px solid black ;
 }
