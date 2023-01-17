@@ -43,9 +43,40 @@ router.get('/current',requireAuth,async(req,res,next) =>{
     }
     res.json({Bookings:final})
 })
+
+//Get all booking by spotId
+router.get('/:bookingId',async(req,res,next) =>{
+  const {bookingId} = req.params
+  const allbookingbyspotId = await Booking.findAll({where:{spotId:bookingId}})
+  // const restriction
+  res.json({Bookings:allbookingbyspotId})
+})
+
+//Create a Booking by spotId
+router.post('/:bookingId',async(req,res,next) =>{
+  // const {bookingId} = req.params
+  const {spotId,userId,startDate,endDate} = req.body
+  // const userId = req.user
+  // console.log(userId,' this is user id from backend')
+
+  if(!spotId || !userId || !startDate || !endDate){
+    res.status(400).json({"message":"One of the requirement field is missing"})
+  }
+
+  const newBooking = await Booking.create({
+    spotId,
+    userId,
+    startDate,
+    endDate
+  })
+
+  res.status(200).json(newBooking)
+})
+
 //Edit a Booking
 router.put('/:bookingId',requireAuth,async(req,res,next) =>{
-    const {bookingId} = req.params
+  const {startDate,endDate,bookingId} = req.body
+    // const {spotId} = req.params
     const validateBooking = await Booking.findByPk(bookingId)
     if(!validateBooking){
         res.status(404).json({
@@ -54,7 +85,7 @@ router.put('/:bookingId',requireAuth,async(req,res,next) =>{
           })
     }
 
-    const {startDate,endDate} = req.body
+    // const {startDate,endDate} = req.body
     if(startDate >= endDate ){
         res.status(400).json({
             "message": "Validation error",
@@ -121,6 +152,7 @@ router.delete('/:bookingId',requireAuth,async(req,res) =>{
 
     await validateBooking.destroy()
     res.json({
+        "deleted":validateBooking,
         "message": "Successfully deleted",
         "statusCode": 200
       })

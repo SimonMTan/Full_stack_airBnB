@@ -496,4 +496,23 @@ router.post('/:spotId/reviews', validatorReview, async (req, res, next) => {
   res.status(201).json(newReview)
 }
 })
+
+router.get(`/search/:searchterm`, async(req,res) => {
+  const {searchterm} = req.params
+  console.log(searchterm)
+  const findspot = await Spot.findAll({where:{
+    [Op.or]: [
+      {
+        name:{
+        [Op.substring]:searchterm
+        }
+      },{
+        city:{
+          [Op.substring]:searchterm
+        }
+      }
+    ]
+  }})
+  res.status(201).json(findspot)
+})
 module.exports = router;

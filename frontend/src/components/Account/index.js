@@ -4,6 +4,7 @@ import * as sessionActions from "../../store/session";
 import { getallspots, getspotdetail } from "../../store/spots";
 import { NavLink } from "react-router-dom";
 import './Account.css'
+import { getbookingforuser } from "../../store/booking";
 
 const Account  = () => {
     const dispatch = useDispatch();
@@ -12,23 +13,21 @@ const Account  = () => {
     const x = allspots.allSpots
     const y = Object.values(x)
     const imgs = y?.filter(img => img?.ownerId === sessionUser?.id)
-
     console.log('sessionUser',sessionUser)
-    // console.log('allspots', allspots)
-    // console.log(x)
-    // console.log(y)
-    // console.log('these are imgs',imgs)
- //..
+
     const [isloaded, setIsloaded] = useState(0)
+    const [booking,setBooking] = useState()
     useEffect(() => {
         dispatch(sessionActions.restoreUser())
         setIsloaded(1)
     },[dispatch])
 
-    useEffect(() =>{
+    useEffect(async() =>{
         dispatch(getallspots())
+        const data = await dispatch(getbookingforuser())
+        setBooking(data)
     },[dispatch])
-
+     console.log(booking, 'this is booking')
     if(!sessionUser){return}
     return (
         <div>
@@ -36,7 +35,7 @@ const Account  = () => {
                 Welcome Back!
             </h1>
             {/* <div> */}
-            <div className="spot-detail">
+            <div className="spot-detail">Your spots
                 {imgs?.map((spot) => (
                     <span className="ind-spot-detail-wrapper" key={spot?.id}>
                         <img className='account-pic' src={spot?.previewImage[0]}></img>
@@ -56,18 +55,13 @@ const Account  = () => {
 
                 ))}
             </div>
-                {/* <div className="">
-                {imgs?.map((spot) => (
-
-                ))}
-                </div>
-                <div className="">
-                {imgs?.map((spot) => (
-
-                ))}
-                </div>
-            </div> */}
-
+            <div>Booking
+                    {booking?.map((booked) => (<div key={booked?.id}>
+                        <div>{booked.Spot.name}</div>
+                        <div>Booking Start Date{booked.startDate}</div>
+                        <div>Booking End Date{booked.endDate}</div>
+                    </div>))}
+            </div>
         </div>
     )
 }
