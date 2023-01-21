@@ -48,6 +48,10 @@ function Navigation({ isLoaded }){
   }, [showMenu]);
 
   useEffect(() =>{
+    if(searchterm =='' ||searchterm ==' '){
+      setSearchContainer(false)
+      return
+    }
     if(searchterm){
       async function getmydata (){
       const result = await dispatch(searchthunk(searchterm))
@@ -64,6 +68,7 @@ function Navigation({ isLoaded }){
       }
       getmydata()
       setSearchBox(false)
+
       return
     }
 
