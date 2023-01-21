@@ -22,20 +22,21 @@ const Newspot = () => {
     const [price, setPrice] = useState('')
     const [img, setImg] = useState('')
     const [errors, setErrors] = useState([]);
+    const [errorsDisplay, setErrorDisplay] = useState(false)
 
 
     useEffect(() => {
-        const err = []
-        if (!name || name.length >15) err.push('Please provide name with less than 15 chars')
-        if (!address) err.push('Please provide address with less than 20 chars')
-        if (!city) err.push('Please provide city with less than 15 chars')
-        if (!state) err.push('Please provide state with less than 15 chars')
-        if (!country) err.push('Please provide country with less than 15 chars')
-        if (!lat || !((lat>=0) || (lat <0)) || ( lat < -90) || (lat > 90)) err.push('Please provide latitude between -90 and 90')
-        if (!lng || !((lng>=0) || (lng <0)) || ( lng < -180) || (lng > 180)) err.push('Please provide longitude  between -180 and 180')
-        if (!description || description.length >255) err.push('Please provide description with less than 255 chars')
-        if (!price || !(price > 0) || (price>100000000000)) err.push('Please provide valid price')
-        if (!img || (!img.endsWith('.png') && !img.endsWith('.jpg')) || (img.length>255)) err.push('Please provide valid image link with .png/.jpg')
+        const err = {}
+        if (!name || name.length >15) err.name = 'Please provide name with less than 15 chars'
+        if (!address) err.address = 'Please provide address with less than 30 chars'
+        if (!city) err.city = 'Please provide city with less than 15 chars'
+        if (!state) err.state = 'Please provide state with less than 15 chars'
+        if (!country) err.country = 'Please provide country with less than 15 chars'
+        if (!lat || !((lat>=0) || (lat <0)) || ( lat < -90) || (lat > 90)) err.lat = 'Please provide latitude between -90 and 90'
+        if (!lng || !((lng>=0) || (lng <0)) || ( lng < -180) || (lng > 180)) err.lng = 'Please provide longitude  between -180 and 180'
+        if (!description || description.length >255) err.description = 'Please provide description with less than 255 chars'
+        if (!price || !(price > 0) || (price>100000000000)) err.price = 'Please provide valid price'
+        if (!img || (!img.endsWith('.png') && !img.endsWith('.jpg') && !img.endsWith('.jpeg')) || (img.length>255)) err.img = 'Please provide valid image link with .png/.jpg'
         setErrors(err)
     }, [address, city, state, country, lat, lng, name, description, price, img])
 
@@ -46,27 +47,47 @@ const Newspot = () => {
     // if (!sessionUser) return Error('need to signup or login')
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setErrors([]);
-        if (errors.length > 0) { return }
-        const data = await dispatch(createspot({ address, city, state, country, lat, lng, name, description, price, img }))
-        if (data.errors) {
-            setErrors(data.errors)
+
+        // setErrors([]);
+        let arrerr = Object.values(errors)
+        if (arrerr.length > 0) {
+            setErrorDisplay(true)
             return
-        };
+        }
+        if(arrerr.length == 0){
+        const data = await dispatch(createspot({ address, city, state, country, lat, lng, name, description, price, img }))
+            if (data.errors) {
+                let errs = {};
+                if(data.errors.address) errs.address = "Please provide valid address"
+                if(data.errors.city) errs.city = "Please provide valid city"
+                if(data.errors.state) errs.state = "Please provide valid state"
+                if(data.errors.country) errs.country = "Please provide valid country"
+                if(data.errors.lat) errs.lat = "Please provide valid lat"
+                if(data.errors.lng) errs.lng = "Please provide valid lng"
+                if(data.errors.name) errs.name = "Please provide valid name"
+                if(data.errors.description) errs.description = "Please provide valid description"
+                if(data.errors.price) errs.price = "Please provide valid price"
+                setErrors(errs)
+                setErrorDisplay(true)
+                return
+            };
+        setErrorDisplay(false)
         history.push('/account')
+        return
+        }
     }
     return (
         <div className="createspotform">
             <h1 className="title">Let host a special spot for Adventures</h1>
             <div className='spotform'>
                 <form onSubmit={handleSubmit}>
-                    {errors.length > 0 && (
+                    {/* {errorsDisplay && errors.name > 0 && (
                         <div className="error-createspot">
                             {errors.map((error, idx) => (
                                 <div className="error-createspot" key={idx}>·{error}</div>
                             ))}
                         </div>
-                    )}
+                    )} */}
                     <label >
                         <div className="info">Name</div>
                         <input
@@ -78,6 +99,14 @@ const Newspot = () => {
                             placeholder="Name...">
                         </input>
                     </label>
+                    {errorsDisplay && errors.name && (
+                        <div className="error-createspot">
+                            {/* {errors.map((error, idx) => (
+                                <div className="error-createspot" key={idx}>·{error}</div>
+                            ))} */}
+                            {errors.name}
+                        </div>
+                    )}
                     <label >
                         <div className="info">Address</div>
                         <input
@@ -89,6 +118,14 @@ const Newspot = () => {
                             placeholder="Address...">
                         </input>
                     </label>
+                    {errorsDisplay && errors.address && (
+                        <div className="error-createspot">
+                            {/* {errors.map((error, idx) => (
+                                <div className="error-createspot" key={idx}>·{error}</div>
+                            ))} */}
+                            {errors.address}
+                        </div>
+                    )}
                     <label >
                         <div className="info">City</div>
                         <input
@@ -100,6 +137,14 @@ const Newspot = () => {
                             placeholder="City...">
                         </input>
                     </label>
+                    {errorsDisplay && errors.city && (
+                        <div className="error-createspot">
+                            {/* {errors.map((error, idx) => (
+                                <div className="error-createspot" key={idx}>·{error}</div>
+                            ))} */}
+                            {errors.city}
+                        </div>
+                    )}
                     <label >
                         <div className="info">State</div>
                         <input
@@ -111,6 +156,14 @@ const Newspot = () => {
                             placeholder="State...">
                         </input>
                     </label>
+                    {errorsDisplay && errors.state && (
+                        <div className="error-createspot">
+                            {/* {errors.map((error, idx) => (
+                                <div className="error-createspot" key={idx}>·{error}</div>
+                            ))} */}
+                            {errors.state}
+                        </div>
+                    )}
                     <label >
                         <div className="info">Country</div>
                         <input
@@ -122,6 +175,14 @@ const Newspot = () => {
                             placeholder="Country...">
                         </input>
                     </label>
+                    {errorsDisplay && errors.country && (
+                        <div className="error-createspot">
+                            {/* {errors.map((error, idx) => (
+                                <div className="error-createspot" key={idx}>·{error}</div>
+                            ))} */}
+                            {errors.country}
+                        </div>
+                    )}
                     <label >
                         <div className="info"> longitude</div>
                         <input
@@ -133,6 +194,14 @@ const Newspot = () => {
                             placeholder="longitude...">
                         </input>
                     </label>
+                    {errorsDisplay && errors.lng && (
+                        <div className="error-createspot">
+                            {/* {errors.map((error, idx) => (
+                                <div className="error-createspot" key={idx}>·{error}</div>
+                            ))} */}
+                            {errors.lng}
+                        </div>
+                    )}
                     <label >
                         <div className="info">latitude</div>
                         <input
@@ -144,6 +213,14 @@ const Newspot = () => {
                             placeholder="latitude...">
                         </input>
                     </label>
+                    {errorsDisplay && errors.lat && (
+                        <div className="error-createspot">
+                            {/* {errors.map((error, idx) => (
+                                <div className="error-createspot" key={idx}>·{error}</div>
+                            ))} */}
+                            {errors.lat}
+                        </div>
+                    )}
                     <label >
                         <div className="info">Description</div>
                         <input
@@ -155,6 +232,14 @@ const Newspot = () => {
                             placeholder="Please provide descriptive as possible">
                         </input>
                     </label>
+                    {errorsDisplay && errors.description && (
+                        <div className="error-createspot">
+                            {/* {errors.map((error, idx) => (
+                                <div className="error-createspot" key={idx}>·{error}</div>
+                            ))} */}
+                            {errors.description}
+                        </div>
+                    )}
                     <label >
                         <div className="info">Price</div>
                         <input
@@ -166,6 +251,14 @@ const Newspot = () => {
                             placeholder="$...">
                         </input>
                     </label>
+                    {errorsDisplay && errors.price && (
+                        <div className="error-createspot">
+                            {/* {errors.map((error, idx) => (
+                                <div className="error-createspot" key={idx}>·{error}</div>
+                            ))} */}
+                            {errors.price}
+                        </div>
+                    )}
                     <label >
                         <div className="info">Image Link</div>
                         <input
@@ -177,7 +270,15 @@ const Newspot = () => {
                             placeholder="Image Link here...">
                         </input>
                     </label>
-                    <button className='submit' disabled={!!errors.length} type="submit">Submit</button>
+                    {errorsDisplay && errors.img && (
+                        <div className="error-createspot">
+                            {/* {errors.map((error, idx) => (
+                                <div className="error-createspot" key={idx}>·{error}</div>
+                            ))} */}
+                            {errors.img}
+                        </div>
+                    )}
+                    <button className='submit' type="submit">Submit</button>
                 </form>
             </div>
         </div>

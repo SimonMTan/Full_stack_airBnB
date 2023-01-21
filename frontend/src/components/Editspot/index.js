@@ -26,19 +26,21 @@ const Editspot = () => {
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
     const [errors, setErrors] = useState([]);
+    const [errorsDisplay, setErrorDisplay] = useState(false)
 
 
     useEffect(() => {
-        const err = []
-        if (!address || address.length >20 ) err.push('Please provide address with less than 20 chars')
-        if (!city || city.length >15) err.push('Please provide city with less than 15 chars')
-        if (!state || state.length >15) err.push('Please provide state with less than 15 chars')
-        if (!country || country.length >15) err.push('Please provide country with less than 15 chars')
-        if (!lat || !((lat>=0) || (lat <0)) || ( lat < -90) || (lat > 90)) err.push('Please provide correct latitude')
-        if (!lng || !((lng>=0) || (lng <0)) || ( lng < -180) || (lng > 180)) err.push('Please provide correct longitude')
-        if (!name || name.length>15) err.push('Please provide name with less than 15 chars')
-        if (!description || description.length>255) err.push('Please provide descriptionwith less than 255 chars')
-        if (!price || !(price > 0) || (price >100000000000)) err.push('Please provide valid price')
+        const err = {}
+        if (!name || name.length >15) err.name = 'Please provide name with less than 15 chars'
+        if (!address) err.address = 'Please provide address with less than 30 chars'
+        if (!city) err.city = 'Please provide city with less than 15 chars'
+        if (!state) err.state = 'Please provide state with less than 15 chars'
+        if (!country) err.country = 'Please provide country with less than 15 chars'
+        if (!lat || !((lat>=0) || (lat <0)) || ( lat < -90) || (lat > 90)) err.lat = 'Please provide latitude between -90 and 90'
+        if (!lng || !((lng>=0) || (lng <0)) || ( lng < -180) || (lng > 180)) err.lng = 'Please provide longitude  between -180 and 180'
+        if (!description || description.length >255) err.description = 'Please provide description with less than 255 chars'
+        if (!price || !(price > 0) || (price>100000000000)) err.price = 'Please provide valid price'
+        // if (!img || (!img.endsWith('.png') && !img.endsWith('.jpg') && !img.endsWith('.jpeg')) || (img.length>255)) err.img = 'Please provide valid image link with .png/.jpg'
         setErrors(err)
     }, [address, city, state, country, lat, lng, name, description, price])
 
@@ -77,28 +79,43 @@ const Editspot = () => {
         // if(!description)err.push('Please provide description')
         // if(!price || price <= 0)err.push('Please provide valid price')
         // setErrors(err)
-        if (errors.length > 0) { return }
-        history.push(`/spots/${spotId}`)
-        let info = { address, city, state, country, lat, lng, name, description, price }
-        return dispatch(editspot(info, spotId)).catch(
-            async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
-            }
-        );
+        let arrerr = Object.values(errors)
+        if (arrerr.length > 0) {
+            setErrorDisplay(true)
+            return
+        }
+        if(arrerr.length == 0){
+            let info = { address, city, state, country, lat, lng, name, description, price }
+            return dispatch(editspot(info, spotId)).catch(
+                async (res) => {
+                    const data = await res.json();
+                    if(data && data.errors){
+                        let errs = {};
+                        if(data.errors.address) errs.address = "Please provide valid address"
+                        if(data.errors.city) errs.city = "Please provide valid city"
+                        if(data.errors.state) errs.state = "Please provide valid state"
+                        if(data.errors.country) errs.country = "Please provide valid country"
+                        if(data.errors.lat) errs.lat = "Please provide valid lat"
+                        if(data.errors.lng) errs.lng = "Please provide valid lng"
+                        if(data.errors.name) errs.name = "Please provide valid name"
+                        if(data.errors.description) errs.description = "Please provide valid description"
+                        if(data.errors.price) errs.price = "Please provide valid price"
+                        setErrors(errs)
+                        setErrorDisplay(true)
+                        return
+                    }
+                    if(data && !data.errors)
+                        history.push(`/spots/${spotId}`)
+                        setErrorDisplay(false)
+                    }
+                );
+        }
     };
     return (
         <div className="editspotform">
             <div className='editspot'>
                 <div className='editspotformwrapper'>
                     <form  onSubmit={handleSubmit}>
-                    {errors.length > 0 && (
-                        <div className="error-editspot">
-                            {errors.map((error, idx) => (
-                                <div key={idx}>{error}</div>
-                            ))}
-                        </div>
-                    )}
                     <label>
                         <div className="info">Name</div>
                         <input
@@ -110,6 +127,11 @@ const Editspot = () => {
                             placeholder="Name for spot...">
                         </input>
                     </label>
+                    {errorsDisplay && errors.name && (
+                        <div className="error-createspot">
+                            {errors.name}
+                        </div>
+                    )}
                     <label>
                         <div className="info">Address</div>
                         <input
@@ -121,6 +143,11 @@ const Editspot = () => {
                             placeholder="Address...">
                         </input>
                     </label>
+                    {errorsDisplay && errors.address && (
+                        <div className="error-createspot">
+                            {errors.address}
+                        </div>
+                    )}
                     <label>
                         <div className="info">City</div>
                         <input
@@ -132,6 +159,11 @@ const Editspot = () => {
                             placeholder="City...">
                         </input>
                     </label>
+                    {errorsDisplay && errors.city && (
+                        <div className="error-createspot">
+                            {errors.city}
+                        </div>
+                    )}
                     <label>
                         <div className="info">State</div>
                         <input
@@ -143,6 +175,11 @@ const Editspot = () => {
                             placeholder="State...">
                         </input>
                     </label>
+                    {errorsDisplay && errors.state && (
+                        <div className="error-createspot">
+                            {errors.state}
+                        </div>
+                    )}
                     <label>
                         <div className="info">Country</div>
                         <input
@@ -154,6 +191,11 @@ const Editspot = () => {
                             placeholder="Country...">
                         </input>
                     </label>
+                    {errorsDisplay && errors.country && (
+                        <div className="error-createspot">
+                            {errors.country}
+                        </div>
+                    )}
                     <label>
                         <div className="info"> longitude</div>
                         <input
@@ -165,6 +207,11 @@ const Editspot = () => {
                             placeholder="longitude...">
                         </input>
                     </label>
+                    {errorsDisplay && errors.lng && (
+                        <div className="error-createspot">
+                            {errors.lng}
+                        </div>
+                    )}
                     <label>
                         <div className="info">latitude</div>
                         <input
@@ -176,6 +223,11 @@ const Editspot = () => {
                             placeholder="latitude...">
                         </input>
                     </label>
+                    {errorsDisplay && errors.lat && (
+                        <div className="error-createspot">
+                            {errors.lat}
+                        </div>
+                    )}
                     <label>
                         <div className="info">Description</div>
                         <input
@@ -187,6 +239,11 @@ const Editspot = () => {
                             placeholder="Please provide descriptive as possible">
                         </input>
                     </label>
+                    {errorsDisplay && errors.description && (
+                        <div className="error-createspot">
+                            {errors.description}
+                        </div>
+                    )}
                     <label>
                         <div className="info">Price</div>
                         <input
@@ -198,6 +255,11 @@ const Editspot = () => {
                             placeholder="$...">
                         </input>
                     </label>
+                    {errorsDisplay && errors.price && (
+                        <div className="error-createspot">
+                            {errors.price}
+                        </div>
+                    )}
                     <button className='submit' disabled={!!errors.length} type="submit">Submit</button>
                 </form>
                     </div>

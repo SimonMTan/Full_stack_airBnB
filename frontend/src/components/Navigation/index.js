@@ -131,7 +131,7 @@ function Navigation({ isLoaded }){
         <div className='searchbar'>
             <form>
               <label className='searchbar1'>
-                <input className = 'search_input_container' placeholder={'Search by Name or city...'} type='search' value={searchterm} onChange={updateterm}>
+                <input className = 'search_input_container' placeholder={'Search by Name or City...'} type='search' value={searchterm} onChange={updateterm}>
                 </input>
                 {/* <button ><i class="fa-solid fa-magnifying-glass"></i></button> */}
               </label>

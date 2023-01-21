@@ -1,5 +1,7 @@
 .account-title{
     font-size:50px;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 .spot-detail{
@@ -17,7 +19,8 @@
 .account-pic{
     width:100%;
     height:100%;
-    margin: 30px 0px;
+    margin: 10px 0px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
 .account-button-container{
@@ -62,21 +65,47 @@ a:visited , a:link{
 
 .title123{
     font-size: 30px;
-    margin-left:5px;
+    margin-left:1%;
+    margin-bottom:8px;
+}
+.title1234{
+    font-size: 30px;
+    margin-left:1%;
+    margin-top: 2px;
+    margin-bottom:18px;
 }
 
 .bookingwrapper{
     margin:0px 1%;
+    /* border: 1px solid black; */
+    text-align: center;
 }
 
+.bookingdetailwrapper{
+    border: 1px solid black;
+    padding:5px;
+    border-radius: 5px;
+    width: 290px;
+    margin-bottom: 10px;
+   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.bookingdetail_title{
+    margin: 3px 0px;
+    font-size: 17px;
+}
 .bookingdetail{
     margin: 3px 0px;
+    font-size: 15px;
+
 }
 .yesbutton{
     background-color: #FF385C;
     color:white;
     text-decoration: none;
     border:1px solid black ;
+    width:100px;
+    border-radius: 5px;
 }
 .yesbutton:hover{
     cursor: pointer;

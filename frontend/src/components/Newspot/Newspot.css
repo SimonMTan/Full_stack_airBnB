@@ -1,12 +1,14 @@
 .info{
     font-size: 15px;
     padding:2px;
+    margin-left: 10px;
 }
 
 .input {
     width: 91%;
     padding: 10px 10px;
     margin: 10px ;
+    /* margin-bottom: */
     border-radius: 15px;
     /* box-sizing: border-box; */
 }
@@ -33,11 +35,14 @@
 }
 
 .error-createspot{
-    margin: 0 10px 20px 10px;
-    padding: 5px 0px 5px 14px;
-    background-color:#FF385C ;
+    /* margin: 0 10px 20px 10px;
+    padding: 5px 0px 5px 14px; */
+    /* background-color: ; */
+    margin-left: 10px;
     border-radius: 10px;
-    color:white;
+    color:#FF385C;
+    font-size:11px;
+    margin-bottom: 12px;
 }
 
 .submit{

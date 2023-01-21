@@ -59,11 +59,11 @@ const Account  = () => {
 
                 ))}
             </div>
-            <div className="title123">Booking</div>
+            <div className="title1234">Booking</div>
             <div className='bookingwrapper'>
                     {data?.map((booked) => (
-                    <div key={booked?.id}>
-                        <div className="bookingdetail">{booked?.Spot?.name}</div>
+                    <div className='bookingdetailwrapper' key={booked?.id}>
+                        <div className="bookingdetail_title"><strong>{booked?.Spot?.name}</strong></div>
                         <div className="bookingdetail">Booking Start Date:&nbsp;{booked.startDate}</div>
                         <div className="bookingdetail">Booking End Date:&nbsp;{booked.endDate}</div>
                         <button className='yesbutton' onClick={async() => await dispatch(deletebooking(booked.id)).then(async() =>await dispatch(getbookingforuser()))}> Delete</button>
