@@ -504,11 +504,21 @@ router.get(`/search/:searchterm`, async(req,res) => {
     [Op.or]: [
       {
         name:{
-        [Op.substring]:searchterm
+          [Op.like]:`%${searchterm}%`
         }
       },{
         city:{
-          [Op.substring]:searchterm
+          [Op.like]:`%${searchterm}%`
+        }
+      }
+      ,{
+        state:{
+          [Op.like]:`%${searchterm}%`
+        }
+      }
+      ,{
+        country:{
+          [Op.like]:`%${searchterm}%`
         }
       }
     ]
