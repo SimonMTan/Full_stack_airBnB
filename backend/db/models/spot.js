@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     lat: { type: DataTypes.FLOAT },
     lng: { type: DataTypes.FLOAT },
     name: { type: DataTypes.STRING },
-    description: { type: DataTypes.STRING },
+    description: { type: DataTypes.TEXT },
     price: { type: DataTypes.FLOAT }
   }, {
     sequelize,

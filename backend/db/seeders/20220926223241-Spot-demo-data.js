@@ -69,7 +69,7 @@ module.exports = {
         lat:50.50,
         lng:-50.50,
         name:'Ferran',
-        description:"Get away from it all in our rustic cabin, nestled in the heart of the Sierra Nevada mountains. Our 2-bedroom, 1-bathroom cabin is the perfect place to escape the hustle and bustle of everyday life and reconnect with nature. Enjoy hiking, skiing, and fishing in the surrounding wilderness, or simply relax on the cabin's large deck and take in the stunning mountain views. ",
+        description:"Get away from it all in our rustic cabin, nestled in the heart of the Sierra Nevada mountains. Our 2-bedroom, 1-bathroom cabin is the perfect place to escape the hustle and bustle of everyday life and reconnect with nature.",
         price: 222
       },
       {
@@ -81,7 +81,7 @@ module.exports = {
         lat:60.60,
         lng:-60.60,
         name:'Big Light',
-        description:"Take a short walk to the beach for swimming and sunbathing, or explore the nearby towns for shopping and dining. With comfortable furnishings and plenty of outdoor space, our vacation home is the perfect place for your next family vacation.",
+        description:"Take a short walk to the beach for swimming and sunbathing, or explore the nearby towns for shopping and dining. With comfortable furnishings and plenty of outdoor space, this is the perfect place for your next family vacation.",
         price: 666
       },
       {
@@ -93,7 +93,7 @@ module.exports = {
         lat:30.30,
         lng:-60.60,
         name:'June',
-        description:"Experience the beauty of New England at our charming vacation home in the heart of Cape Cod. Our 3-bedroom, 2-bathroom cottage is located on a quiet street and features a spacious living area, fully equipped kitchen and a large deck that is perfect for dining al fresco.",
+        description:"Experience the beauty of New England at our charming vacation home in the heart of Cape Cod. Our 3-bedroom, 2-bathroom cottage is located on a quiet street and features a spacious living area, fully equipped kitchen.",
         price: 456
       },
       {

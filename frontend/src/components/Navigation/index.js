@@ -142,7 +142,7 @@ function Navigation({ isLoaded }){
                 <div >
                   {searchbox.length>0?<div className='search_name'>{searchbox?.map((spotinfo)=>(
                   <NavLink key={spotinfo.id} to={`/spots/${spotinfo?.id}`} className='search_name_individual'>
-                    <div>{spotinfo?.name}</div><div>{spotinfo?.city},{spotinfo?.state}</div></NavLink>
+                    <div className='namexxx'>{spotinfo?.name}</div><div className='namexxx'>{spotinfo?.city},{spotinfo?.state}</div></NavLink>
                     ))}
                   </div>:
                   <div className='search_name_noresult'>no result found!</div>

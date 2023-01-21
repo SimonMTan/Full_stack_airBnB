@@ -20,6 +20,7 @@
     width:100%;
     height:100%;
     margin: 10px 0px;
+    border-radius: 5px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
@@ -38,8 +39,7 @@
     align-items: center;
     margin-top: 3px;
     margin-bottom: 3px;
-
-
+    border-radius: 3px;
 }
 
 .acc-button-detail{
@@ -99,6 +99,11 @@ a:visited , a:link{
     font-size: 15px;
 
 }
+a, a:visited, a:hover, a:active {
+    color: inherit;
+    text-decoration:none;
+  }
+
 .yesbutton{
     background-color: #FF385C;
     color:white;

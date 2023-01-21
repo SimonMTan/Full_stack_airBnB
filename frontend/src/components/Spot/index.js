@@ -51,6 +51,7 @@ const Getspot = () => {
     if(date?.length === 1){
         setStartDate(date[0].toDateString())
     }
+
     if(date?.length === 2){
         setStartDate(date[0].toDateString())
         setEndDate(date[1].toDateString())
@@ -64,6 +65,9 @@ const Getspot = () => {
         // console.log(user.id,'hello', spotDetail?.ownerId,'are they the same?')
         // if(user.id == spotDetail.ownerId) err.push("You owned this place")
         if(user){
+            if(!startDate)err.push('Please select a start date')
+            if(startDate)
+                if(!endDate)err.push('Please select a end date')
             if(dayDiff == 0) err.push(' 1 night minimum')
             if(dayDiff > 7) err.push(' 7 nights maximum')
         }
@@ -173,6 +177,7 @@ const Getspot = () => {
                                 value={date}
                                 selectRange={true}
                                 tileDisabled={tileDisabled}
+                                // placeholder={date}
                                 // defaultValue={null}
                                 />
                             </div>
