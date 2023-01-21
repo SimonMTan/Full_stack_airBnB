@@ -504,25 +504,26 @@ router.get(`/search/:searchterm`, async(req,res) => {
     [Op.or]: [
       {
         name:{
-          [Op.like]:`%${searchterm}%`
+          [Op.iLike]:`%${searchterm}%`
         }
       },{
         city:{
-          [Op.like]:`%${searchterm}%`
+          [Op.iLike]:`%${searchterm}%`
         }
       }
       ,{
         state:{
-          [Op.like]:`%${searchterm}%`
+          [Op.iLike]:`%${searchterm}%`
         }
       }
       ,{
         country:{
-          [Op.like]:`%${searchterm}%`
+          [Op.iLike]:`%${searchterm}%`
         }
       }
     ]
   }})
+  //for local use [Op.like] instead
   res.status(201).json(findspot)
 })
 module.exports = router;
